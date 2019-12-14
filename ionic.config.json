@@ -1,5 +1,8 @@
 {
   "name": "ocdc",
-  "integrations": {},
-  "type": "angular"
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "bf4c0445"
 }

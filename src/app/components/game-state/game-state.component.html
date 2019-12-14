@@ -1,0 +1,38 @@
+
+
+<div *ngIf="type=='max'; else min">
+        <div *ngIf="!game.ended">
+            <p *ngIf="gameState.play_type == 'CNV'; else reg">
+                CONVERSION
+            </p>
+            <ng-template #reg>
+                <p>
+                Poss: {{ game.getCurrentGameState().possession }}<br>
+                Home Score: {{ game.getCurrentGameState().score_home }}<br>
+                Away Score: {{ game.getCurrentGameState().score_away }}<br>
+                Quarter: {{ game.getCurrentGameState().quarter }}<br>
+                Time Remaining: {{ game.getCurrentGameState().clock }}<br>
+                Down: {{ game.getCurrentGameState().down }}<br>
+                Dist: {{ game.getCurrentGameState().dist }}<br>
+                YTG: {{ game.getCurrentGameState().ytg }}
+                </p>
+            </ng-template>
+        </div>
+        
+
+        
+      <div *ngIf="game.ended">
+        Home Score: {{ game.getCurrentGameState().score_home }}<br>
+        Away Score: {{ game.getCurrentGameState().score_away }}
+      </div>
+</div>
+      
+<ng-template #min>
+        <p *ngIf="gameState.play_type == 'CNV';else minreg">
+                CONVERSION
+        </p>
+    
+            <ng-template #minreg>
+      {{ game.getCurrentGameState().down }} & {{ game.getCurrentGameState().dist }} | {{ yard_line }}
+            </ng-template>
+</ng-template>

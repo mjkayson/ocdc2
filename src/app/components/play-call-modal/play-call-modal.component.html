@@ -1,0 +1,23 @@
+<ion-header translucent>
+    <ion-toolbar>
+      <ion-title>Playcall</ion-title>
+      <ion-buttons slot="end">
+        <!--<ion-button onclick="dismissModal()">Close</ion-button>-->
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content fullscreen class="ion-padding">
+    <game-state [game]="game" type="min"></game-state>
+     
+    <div *ngIf="type=='R'; else special"> 
+    <ion-button (click)="snap('run')">Run</ion-button>
+    <ion-button (click)="snap('short')">Short Pass</ion-button>
+    <ion-button (click)="snap('long')">Long Pass</ion-button>
+    </div>
+    <ng-template #special>
+      <ion-button (click)="snap('punt')">Punt</ion-button>
+    </ng-template>
+    <p *ngIf="gameState.play_type == 'CNV'">
+      <ion-button (click)="snap('fg')">Kick</ion-button>
+    </p>
+  </ion-content>
