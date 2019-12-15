@@ -16,7 +16,7 @@ export class GamePage implements OnInit {
 
   constructor(public toastController: ToastController,
               public modalController: ModalController,
-              private game: GameService) {
+              public game: GameService) {
 
   }
 

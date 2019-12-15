@@ -10,16 +10,22 @@ export class PlayResult {
   score_home: number = 0;
   score_away: number = 0;
   data;
+  start_game_state;
 
-  constructor(data=  null){
+  constructor(data = null, game_state){
     /*
     for(var i in data){
       this[i] = data[i];
     }
     */
+   this.start_game_state = game_state;
    this.commentary = [];
    this.data = {};
 
+  }
+
+  getStartGameState(){
+    return this.start_game_state;
   }
 
   addCommentary(str){
@@ -28,8 +34,9 @@ export class PlayResult {
 
   getCommentary(){
     //console.log(this.commentary);
-    return this.commentary.join(', ');
+    return this.commentary;
   }
+  
 }
 
 

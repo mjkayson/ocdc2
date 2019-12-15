@@ -87,9 +87,9 @@ export class PlaySegment_ShortPass extends PlaySegment {
 export class PlaySegment_LongPass extends PlaySegment {
 
   eval(){
-    let rand = Siri.getRandomNumber(1,6);
+    let rand = Siri.getRandomNumber(1,7);
 
-    if(rand > 6){
+    if(rand > 3){
       this.time = 5;
       this.commentary = "Pass incomplete";
       
@@ -129,7 +129,7 @@ export class PlaySegment_FieldGoal extends PlaySegment {
     
     this.commentary = "Field goal attempt of x yards";
     if(rand > 1){
-      this.score = 3;
+      this.data.fg_good = true;
       this.commentary += ", good.";
     } else {
       this.commentary += ", no good.";
@@ -148,7 +148,6 @@ export class PlaySegment_PAT extends PlaySegment {
     let rand = Siri.getRandomNumber(1,40);
     
     if(rand > 1){
-      this.score = 1;
       this.data.pat_good = true;
       this.commentary = "Point after is good.";
     } else {
@@ -165,7 +164,6 @@ export class PlaySegment_Kickoff extends PlaySegment {
 
   eval(){
 
-    this.time = 15;
     let rand = Siri.getRandomNumber(55,80);
     if(rand > 65){
       this.data.touchback = true;
@@ -176,6 +174,7 @@ export class PlaySegment_Kickoff extends PlaySegment {
       this.commentary = "Kickoff to the " + (65-rand);
     }
     if(!this.data.touchback){
+      this.time = 12;
       let ret = Siri.getRandomNumber(15,35);
       this.gain = rand - ret;
       this.commentary += ", returned " + ret + " yards";

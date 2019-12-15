@@ -6,16 +6,58 @@
                 CONVERSION
             </p>
             <ng-template #reg>
-                <p>
-                Poss: {{ game.getCurrentGameState().possession }}<br>
-                Home Score: {{ game.getCurrentGameState().score_home }}<br>
-                Away Score: {{ game.getCurrentGameState().score_away }}<br>
-                Quarter: {{ game.getCurrentGameState().quarter }}<br>
-                Time Remaining: {{ game.getCurrentGameState().clock }}<br>
-                Down: {{ game.getCurrentGameState().down }}<br>
-                Dist: {{ game.getCurrentGameState().dist }}<br>
-                YTG: {{ game.getCurrentGameState().ytg }}
-                </p>
+                <ion-grid class="ion-text-center">
+
+                    <ion-row>
+                        <ion-col [class.inPossession]="game.getCurrentGameState().possession == 'H'" size="4">
+                            <ion-text  class="scoreboardHeader">HOME</ion-text><br>
+                                {{ game.getCurrentGameState().score_home }}
+                        </ion-col>
+                        <ion-col class="gameClock" size="4">
+                                {{ getClock(game.getCurrentGameState().clock) }}
+                        </ion-col>
+                        <ion-col [class.inPossession]="game.getCurrentGameState().possession == 'A'" size="4">
+                                <ion-text  class="scoreboardHeader">AWAY</ion-text><br>
+                                {{ game.getCurrentGameState().score_away }}
+                        </ion-col>
+
+                    </ion-row>
+
+                    <ion-row class="scoreboardHeader">
+                        
+                        <ion-col size="3">
+                                DOWN
+                        </ion-col>
+                        <ion-col size="3">
+                                DIST
+                        </ion-col>
+                        <ion-col size="3">
+                                BALL ON
+                        </ion-col>
+                        <ion-col size="3">
+                                Q
+                        </ion-col>
+
+                    </ion-row>
+
+                    <ion-row>
+
+                        <ion-col size="3">
+                                {{ game.getCurrentGameState().down }}
+                        </ion-col>
+                        <ion-col size="3">
+                                {{ game.getCurrentGameState().dist }}
+                        </ion-col>
+                        <ion-col size="3">
+                                {{ game.getCurrentGameState().ytg }}
+                        </ion-col>
+                        <ion-col size="3">
+                                {{ game.getCurrentGameState().quarter }}
+                        </ion-col>
+
+                    </ion-row>
+
+                </ion-grid>
             </ng-template>
         </div>
         

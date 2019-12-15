@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
+import { AI } from '../../cls/AI/AI.cls';
+
 @Component({
   selector: 'app-play-call-modal',
   templateUrl: './play-call-modal.component.html',
@@ -18,6 +20,16 @@ export class PlayCallModalComponent implements OnInit {
 
   ngOnInit() {
     this.gameState = this.game.getCurrentGameState();
+    
+  }
+
+  ionViewDidEnter(){
+    // AI possession so just call a play 
+    if(this.gameState.possession == 'A'){
+      //console.log('AI calling play');
+      this.call(AI.getPlaycall(this.gameState));
+
+    }
   }
 
   call(str) {

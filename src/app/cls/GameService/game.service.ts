@@ -67,6 +67,16 @@ export class GameService {
     return this.getCurrentPlay().getPlayResult();
   }
 
+  getCurrentDrivePlayResults(){
+    let res = [];
+    this.plays.forEach((play)=>{
+      if(play.getPlayResult()){
+        res.push(play.getPlayResult());
+      }
+    });
+    return res;
+  }
+
   /*
    * Implements the logic for end-of-play
    */
@@ -78,6 +88,7 @@ export class GameService {
     let res = play.getPlayResult();
 
     let gs = new GameState(this.getCurrentPlay().getStartGameState());
+    gs.clock -= res.time;
     switch(gs.play_type){
       case 'CNV': gs = this.resolveTwoPointTry(res, gs); break;
       case 'PAT': gs = this.resolvePAT(res, gs); break;
@@ -86,7 +97,7 @@ export class GameService {
       default:    gs = this.resolveRegularPlay(res, gs);
     }
 
-    console.log('gs', gs);
+    //console.log('gs', gs);
 
     gs = this.checkClock(res, gs);
     play.setEndGameState(gs);
@@ -100,11 +111,11 @@ export class GameService {
       gs.quarter++;
       gs.clock = this.quarter_length;
       //halftime
-      if(gs.quarter == 2){
+      if(gs.quarter == 3){
 
         // TODO handle possession according to coin toss
         gs.possession = 'A';
-        gs = this.newDrive(gs);
+        gs = this.setUpForKickoff(gs);
       
       // end of game
       } else if(gs.quarter > 4){
@@ -152,11 +163,13 @@ export class GameService {
   }
 
   resolveFieldGoalAttempt(res, gs){
-    if(res.score){
-      gs = this.offensiveScore(gs, res.score);
+    if(res.data.fg_good){
+      gs = this.offensiveScore(gs, 3);
       gs = this.setUpForKickoff(gs);
     } else {
       gs = this.doChangeOfPossession(gs);
+      // ball is placed at the spot of the kick
+      gs.ytg -= 7;
       gs.play_type = 'REG';
     }
 
@@ -185,7 +198,6 @@ export class GameService {
       gs.down++;
       gs.dist -= res.gain;
       gs.ytg -= res.gain;
-      gs.clock -= res.time;
 
       if(res.change_of_possession > 0){
 

@@ -1,4 +1,7 @@
-import { Component, Input, AfterContentInit } from '@angular/core';
+import { Component, Input, AfterContentInit, ViewChild } from '@angular/core';
+import { IonContent } from '@ionic/angular';
+
+import { Siri } from '../../cls/Siri/Siri.cls';
 
 @Component({
   selector: 'play-by-play',
@@ -8,9 +11,24 @@ import { Component, Input, AfterContentInit } from '@angular/core';
 export class PlayByPlayComponent implements AfterContentInit {
 
   @Input() game;
-  
-  constructor() { }
+  @ViewChild('playByPlay', { static: false}) playByPlay: any;
 
-  ngAfterContentInit() {}
+  getClock;
+  
+  constructor() {
+     this.getClock = Siri.getClock;
+  }
+
+  ngAfterContentInit() {
+    setInterval(() => {
+      this.scrollDown();
+    }, 100);
+  }
+
+  scrollDown(){
+    let el = this.playByPlay.nativeElement;
+    el.scrollTop = el.scrollHeight;
+  }
+
 
 }

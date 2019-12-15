@@ -54,7 +54,7 @@ export class Play {
 
   run(){
     this.started = true;
-    this.playResult = new PlayResult();
+    this.playResult = new PlayResult({}, this.game_state_start );
     this.segments.forEach(segment => {
       if(!this.finished){
         this.resolveSegment(segment);
@@ -62,7 +62,7 @@ export class Play {
         //this.setEndGameState();
       }
     });
-    console.log('play result', this.playResult);
+    //console.log('play result', this.playResult);
     this.finished = true;
   }
 

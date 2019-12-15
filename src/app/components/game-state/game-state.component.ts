@@ -1,5 +1,7 @@
 import { Component, Input, AfterContentInit } from '@angular/core';
 
+import { Siri } from '../../cls/Siri/Siri.cls';
+
 @Component({
   selector: 'game-state',
   templateUrl: './game-state.component.html',
@@ -12,8 +14,11 @@ export class GameStateComponent implements AfterContentInit {
 
   yard_line;
   gameState;
+  getClock;
 
-  constructor() { }
+  constructor() { 
+    this.getClock = Siri.getClock;
+  }
 
   ngAfterContentInit() {
     this.gameState = this.game.getCurrentGameState();
