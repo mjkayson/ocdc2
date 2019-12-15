@@ -13,12 +13,14 @@ export class PlaySegment {
   scoring_team: number; // id of the team that scored
   end_of_play: boolean = false; // 1 for yes
   commentary: string = ""; // text commentary
+  data;
 
   constructor(data = null){
     
     for(var i in data){
       this[i] = data[i];
     }
+    this.data = {};
       
   }
 
@@ -125,14 +127,59 @@ export class PlaySegment_FieldGoal extends PlaySegment {
     this.time = 15;
     let rand = Siri.getRandomNumber(1,3);
     
-    this.commentary = "Field goal attempt of x yards, ";
+    this.commentary = "Field goal attempt of x yards";
     if(rand > 1){
       this.score = 3;
-      this.commentary += "good.";
+      this.commentary += ", good.";
     } else {
-      this.commentary += "no good.";
+      this.commentary += ", no good.";
     }
     
+    this.end_of_play = true;
+  }
+
+}
+
+export class PlaySegment_PAT extends PlaySegment {
+
+  eval(){
+
+    this.time = 0;
+    let rand = Siri.getRandomNumber(1,40);
+    
+    if(rand > 1){
+      this.score = 1;
+      this.data.pat_good = true;
+      this.commentary = "Point after is good.";
+    } else {
+      this.commentary = "Point after is no good.";
+    }
+   
+    this.end_of_play = true;
+  }
+
+}
+
+
+export class PlaySegment_Kickoff extends PlaySegment {
+
+  eval(){
+
+    this.time = 15;
+    let rand = Siri.getRandomNumber(55,80);
+    if(rand > 65){
+      this.data.touchback = true;
+      this.commentary = "Kickoff into the endzone, touchback.";
+    } else if(rand == 65){
+      this.commentary = "Kickoff to the goal line";
+    } else {
+      this.commentary = "Kickoff to the " + (65-rand);
+    }
+    if(!this.data.touchback){
+      let ret = Siri.getRandomNumber(15,35);
+      this.gain = rand - ret;
+      this.commentary += ", returned " + ret + " yards";
+    }    
    
     this.end_of_play = true;
     this.change_of_possession = 1;

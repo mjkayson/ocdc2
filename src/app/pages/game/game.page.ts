@@ -65,8 +65,7 @@ export class GamePage implements OnInit {
     // do play creation here too for now
     let play = new Play(this.game.getCurrentGameState());
     play.setPlaycall(str);
-    this.game.addPlay(play);
-    
+    this.game.addPlay(play);    
 
     this.game.update();
     this.showPlaycallPromptToast();

@@ -80,12 +80,15 @@ export class GameService {
     let gs = new GameState(this.getCurrentPlay().getStartGameState());
     switch(gs.play_type){
       case 'CNV': gs = this.resolveTwoPointTry(res, gs); break;
+      case 'PAT': gs = this.resolvePAT(res, gs); break;
+      case 'KO':  gs = this.resolveKickoff(res, gs); break;
       case 'FG':  gs = this.resolveFieldGoalAttempt(res, gs); break;
       default:    gs = this.resolveRegularPlay(res, gs);
     }
 
-    gs = this.checkClock(res, gs);
+    console.log('gs', gs);
 
+    gs = this.checkClock(res, gs);
     play.setEndGameState(gs);
 
   }
@@ -114,23 +117,60 @@ export class GameService {
 
   }
 
+  resolveKickoff(res, gs){    
+
+    gs.ytg -= res.gain;
+    gs.down = 1;
+    gs.dist = 10;
+    gs = this.doChangeOfPossession(gs);
+    if(res.data.touchback){
+      gs = this.doTouchback(gs);
+    }
+    gs.play_type = 'REG';
+    
+    return gs;
+  }
+
   resolveTwoPointTry(res, gs){
     gs.ytg -= res.gain;
     if(gs.ytg <= 0){
       res.addCommentary('Two point try is good!');
       gs = this.offensiveScore(gs, 2);   
     }
-    gs = this.doChangeOfPossession(gs);
-    gs = this.newDrive(gs);
-    gs.play_type = 'REG';
+    gs = this.setUpForKickoff(gs);
+    return gs;
+
+  }
+
+  resolvePAT(res, gs){
+    if(res.data.pat_good){
+      gs = this.offensiveScore(gs, 1);   
+    }
+    gs = this.setUpForKickoff(gs);
     return gs;
 
   }
 
   resolveFieldGoalAttempt(res, gs){
+    if(res.score){
+      gs = this.offensiveScore(gs, res.score);
+      gs = this.setUpForKickoff(gs);
+    } else {
+      gs = this.doChangeOfPossession(gs);
+      gs.play_type = 'REG';
+    }
 
     return gs;
 
+  }
+
+  setUpForKickoff(gs){
+    gs.play_type = 'KO';
+    gs.ytg = 65;
+    // doesn't actually need these two
+    gs.down = 1;
+    gs.dist = 10;
+    return gs;
   }
 
   resolveRegularPlay(res, gs){

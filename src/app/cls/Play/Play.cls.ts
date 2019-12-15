@@ -9,8 +9,10 @@ import  {
           PlaySegment_ShortPass,
           PlaySegment_LongPass,
 
+          PlaySegment_Kickoff,
           PlaySegment_Punt,
-          PlaySegment_FieldGoal
+          PlaySegment_FieldGoal,
+          PlaySegment_PAT
         } from '../PlaySegment/PlaySegment.cls';
 import { PlayResult } from '../PlayResult/PlayResult.cls';
 
@@ -39,8 +41,12 @@ export class Play {
       this.segments = [new PlaySegment_Dropback(), new PlaySegment_LongPass()];
     } else if(str == 'punt'){
       this.segments = [new PlaySegment_Punt()];
+    } else if(str == 'pat'){
+      this.segments = [new PlaySegment_PAT()];
     } else if(str == 'fg'){
       this.segments = [new PlaySegment_FieldGoal()];
+    } else if(str == 'ko'){
+      this.segments = [new PlaySegment_Kickoff()];
     } else {
       this.segments = [new PlaySegment_Handoff(), new PlaySegment_Run()];
     }
@@ -87,7 +93,9 @@ export class Play {
     // yards gained
     this.playResult.gain += segment.gain;        
     // time
-    this.playResult.time  += segment.time;
+    this.playResult.time  += segment.time;   
+    // specific data
+    this.playResult.data  = {...this.playResult.data, ...segment.data};
 
     if(segment.commentary) this.playResult.addCommentary(segment.commentary);
 

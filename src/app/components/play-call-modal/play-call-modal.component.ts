@@ -20,7 +20,8 @@ export class PlayCallModalComponent implements OnInit {
     this.gameState = this.game.getCurrentGameState();
   }
 
-  snap(str) {
+  call(str) {
+    if(str == 'pat') this.gameState.play_type = 'PAT';
     this.modalController.dismiss({
       playcall: str
     });

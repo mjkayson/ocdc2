@@ -9,6 +9,7 @@ export class PlayResult {
   commentary; // text commentary
   score_home: number = 0;
   score_away: number = 0;
+  data;
 
   constructor(data=  null){
     /*
@@ -17,6 +18,7 @@ export class PlayResult {
     }
     */
    this.commentary = [];
+   this.data = {};
 
   }
 
