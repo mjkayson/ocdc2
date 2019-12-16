@@ -9,14 +9,15 @@
   <ion-content fullscreen class="ion-padding">
     <game-state [game]="game" type="min"></game-state>
      
-    <div *ngIf="gameState.play_type == 'REG' || gameState.play_type == 'CNV'; else special"> 
+    <div *ngIf="gameState.play_type == 'REG' || gameState.play_type == 'CNV'"> 
     <ion-button (click)="call('run')">Run</ion-button>
     <ion-button (click)="call('short')">Short Pass</ion-button>
     <ion-button (click)="call('long')">Long Pass</ion-button>
     </div>
-    <ng-template #special>
+    <div *ngIf="gameState.down == 4">
       <ion-button (click)="call('punt')">Punt</ion-button>
-    </ng-template>
+      <ion-button (click)="call('fg')">Field Goal</ion-button>
+    </div>
     <p *ngIf="gameState.play_type == 'CNV'">
       <ion-button (click)="call('pat')">PAT</ion-button>
     </p>

@@ -34,6 +34,7 @@ export class PlayCallModalComponent implements OnInit {
 
   call(str) {
     if(str == 'pat') this.gameState.play_type = 'PAT';
+    if(str == 'fg') this.gameState.play_type = 'FG';
     this.modalController.dismiss({
       playcall: str
     });

@@ -21,6 +21,15 @@ export class Siri {
     return (new Array(length+1).join(pad)+string).slice(-length);
   }
 
+  public static getDownWithSuffix(down){
+    switch(down){
+      case 1: return '1st';
+      case 2: return '2nd';
+      case 3: return '3rd';
+      case 4: return '4th';
+    }
+  }
+
 
 }
 

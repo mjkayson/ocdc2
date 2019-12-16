@@ -15,16 +15,20 @@ export class GameStateComponent implements AfterContentInit {
   yard_line;
   gameState;
   getClock;
+  getDownWithSuffix;
 
   constructor() { 
     this.getClock = Siri.getClock;
+    this.getDownWithSuffix = Siri.getDownWithSuffix;
   }
 
   ngAfterContentInit() {
     this.gameState = this.game.getCurrentGameState();
     console.log(this.gameState);
     let ytg = this.gameState.ytg;
-    this.yard_line = ytg > 50? 'Own ' + (100 - ytg) : ytg < 50? 'Opp ' + ytg : 50;
+    console.log(ytg);
+    this.yard_line = ytg > 50? (100 - ytg) : ytg < 50? ytg : 50;
+    console.log(this.yard_line);
   }
 
 }
