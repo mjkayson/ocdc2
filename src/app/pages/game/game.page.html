@@ -7,6 +7,9 @@
 <ion-content class="ion-padding">
   <game-state [game]="game" type="max"></game-state>
   <field-view></field-view>
+  <div>{{ playcall_off }} - {{ playcall_def }}</div>
   <play-by-play [game]="game"></play-by-play>
+  <ion-button expand="block" *ngIf="presnap" (click)="snap()">Snap</ion-button>
+
 
 </ion-content>

@@ -1,9 +1,16 @@
+.gameState {
+   background: #f8f8f8;
+   padding: 2px;
+   margin: 0 auto;
+   max-width: 500px;
+}
+
 .inPossession {
-  border: 1px solid #ccc;
+  border-bottom: 2px solid #ccc;
 }
 
 .scoreboardHeader {
-  text-transform: uppercase;
+  //text-transform: uppercase;
   font-size: 11px;
   font-weight: bold;
 }

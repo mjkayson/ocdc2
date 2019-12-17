@@ -15,6 +15,7 @@ export class PlayCallModalComponent implements OnInit {
 
   playcall;
   gameState;
+  onDefense:boolean = false;
 
   constructor(public modalController: ModalController) { }
 
@@ -27,8 +28,9 @@ export class PlayCallModalComponent implements OnInit {
     // AI possession so just call a play 
     if(this.gameState.possession == 'A'){
       //console.log('AI calling play');
-      this.call(AI.getPlaycall(this.gameState));
-
+      this.onDefense = true;
+    } else {
+      this.onDefense = false;
     }
   }
 

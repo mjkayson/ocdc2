@@ -1,6 +1,6 @@
 
 
-<div *ngIf="type=='max'; else min">
+<div class="gameState" *ngIf="type=='max'; else min">
         <div *ngIf="!game.ended">
             <p *ngIf="gameState.play_type == 'CNV'; else reg">
                 CONVERSION
@@ -21,7 +21,7 @@
                         </ion-col>
 
                         <ion-col >
-                                {{ getDownWithSuffix(game.getCurrentGameState().quarter) }}  {{ getClock(game.getCurrentGameState().clock) }}
+                                {{ getDownWithSuffix(game.getCurrentGameState().quarter) }} &nbsp; {{ getClock(game.getCurrentGameState().clock) }}
                         </ion-col>
 
                         <ion-col >

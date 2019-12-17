@@ -14,14 +14,11 @@ export class PlaySegment {
   end_of_play: boolean = false; // 1 for yes
   commentary: string = ""; // text commentary
   data;
+  def;
 
-  constructor(data = null){
-    
-    for(var i in data){
-      this[i] = data[i];
-    }
-    this.data = {};
-      
+  constructor(def){
+    this.def = def; 
+    this.data = {};      
   }
 
   // any rng calculations for the segment happen here
@@ -56,6 +53,7 @@ export class PlaySegment_Run extends PlaySegment {
   eval(){
     this.time = 18;
     this.gain = Siri.getRandomNumber(1,7);
+    if(this.def == 'rund') this.gain -= 4;
     this.end_of_play = true;
     this.commentary = "Run for gain of " + this.gain + ' yards';
   }
@@ -65,16 +63,35 @@ export class PlaySegment_Run extends PlaySegment {
 export class PlaySegment_ShortPass extends PlaySegment {
 
   eval(){
-    let rand = Siri.getRandomNumber(1,4);
+    let rand = Siri.getRandomNumber(1,9);
+    let comp = 7;
+    switch(this.def){
+      case '52zone': comp = 3; break;
+      case '43zone': comp = 4; break;
+      case 'blitz' : comp = 5; break;
+    }
+    let pressure =  Siri.getRandomNumber(1,9);
+    if(this.def == 'blitz'){
+      pressure += 2;
+    }
 
-    if(rand > 2){
+    if(pressure > 8){
+      this.time = 21;
+      this.gain = Siri.getRandomNumber(2,8);
+      this.commentary = "Sack for loss off " + this.gain + ' yards';
+      this.gain *= -1;
+    }
+
+    else if(rand < comp){
       this.time = 5;
       this.commentary = "Pass incomplete";
       
     } else {
 
       this.time = 12;
-      this.gain = Siri.getRandomNumber(4,16);
+      this.gain = Siri.getRandomNumber(2,16);
+      if(this.def == 'blitz') this.gain -= 2;
+      if(this.def == '52zone') this.gain -= 4;
       this.commentary = "Pass complete for gain of " + this.gain + ' yards';
 
     }
@@ -87,16 +104,36 @@ export class PlaySegment_ShortPass extends PlaySegment {
 export class PlaySegment_LongPass extends PlaySegment {
 
   eval(){
-    let rand = Siri.getRandomNumber(1,7);
 
-    if(rand > 3){
-      this.time = 5;
+    let rand = Siri.getRandomNumber(1,9);
+    let comp = 5;
+    switch(this.def){
+      case '52zone': comp = 4; break;
+      case '43zone': comp = 3; break;
+      case 'blitz' : comp = 5; break;
+    }
+    let pressure =  Siri.getRandomNumber(1,9);
+    if(this.def == 'blitz'){
+      pressure += 3;
+    }
+
+    if(pressure > 8){
+      this.time = 21;
+      this.gain = Siri.getRandomNumber(4,10);
+      this.commentary = "Sack for loss off " + this.gain + ' yards';
+      this.gain *= -1;
+    }
+
+    else if(rand < comp){
+      this.time = 9;
       this.commentary = "Pass incomplete";
       
     } else {
 
-      this.time = 12;
-      this.gain = Siri.getRandomNumber(20,35);
+      this.time = 22;
+      this.gain = Siri.getRandomNumber(12,36);
+      if(this.def == 'blitz') this.gain += Siri.getRandomNumber(2,20);
+      if(this.def == '43zone') this.gain -= 8;
       this.commentary = "Pass complete for gain of " + this.gain + ' yards';
 
     }

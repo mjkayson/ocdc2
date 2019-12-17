@@ -8,21 +8,67 @@
   </ion-header>
   <ion-content fullscreen class="ion-padding">
     <game-state [game]="game" type="min"></game-state>
+
+    <div *ngIf="onDefense; else offense">
      
-    <div *ngIf="gameState.play_type == 'REG' || gameState.play_type == 'CNV'"> 
-    <ion-button (click)="call('run')">Run</ion-button>
-    <ion-button (click)="call('short')">Short Pass</ion-button>
-    <ion-button (click)="call('long')">Long Pass</ion-button>
+      <div *ngIf="gameState.play_type == 'REG' || gameState.play_type == 'CNV'"> 
+
+        <ion-button (click)="call('rund')">Run Defense</ion-button>
+        <ion-button (click)="call('52zone')">5-2 Zone</ion-button>
+        <ion-button (click)="call('43zone')">4-3 Zone</ion-button>
+        <ion-button (click)="call('blitz')">Blitz</ion-button>
+
+      </div>
+
+      <div *ngIf="gameState.down == 4">
+
+        <ion-button (click)="call('puntReturn')">Punt Return</ion-button>
+        <ion-button (click)="call('fgBlock')">Field Goal Block</ion-button>
+
+      </div>
+
+      <div *ngIf="gameState.play_type == 'CNV'">
+
+        <ion-button (click)="call('patBlock')">PAT Block</ion-button>
+      
+      </div>
+      
+      <div *ngIf="gameState.play_type == 'KO'">
+
+          <ion-button (click)="call('koReturn')">Kickoff Return</ion-button>
+        
+      </div>
+
     </div>
-    <div *ngIf="gameState.down == 4">
-      <ion-button (click)="call('punt')">Punt</ion-button>
-      <ion-button (click)="call('fg')">Field Goal</ion-button>
-    </div>
-    <p *ngIf="gameState.play_type == 'CNV'">
-      <ion-button (click)="call('pat')">PAT</ion-button>
-    </p>
-    <p *ngIf="gameState.play_type == 'KO'">
-        <ion-button (click)="call('ko')">Kickoff</ion-button>
-        <ion-button (click)="call('onside')">Onside (nyi)</ion-button>
-      </p>
+    <ng-template #offense>
+
+        <div *ngIf="gameState.play_type == 'REG' || gameState.play_type == 'CNV'"> 
+
+            <ion-button (click)="call('run')">Run</ion-button>
+            <ion-button (click)="call('short')">Short Pass</ion-button>
+            <ion-button (click)="call('long')">Long Pass</ion-button>
+    
+          </div>
+    
+          <div *ngIf="gameState.down == 4">
+    
+            <ion-button (click)="call('punt')">Punt</ion-button>
+            <ion-button (click)="call('fg')">Field Goal</ion-button>
+    
+          </div>
+    
+          <div *ngIf="gameState.play_type == 'CNV'">
+    
+            <ion-button (click)="call('pat')">PAT</ion-button>
+          
+          </div>
+          
+          <div *ngIf="gameState.play_type == 'KO'">
+    
+              <ion-button (click)="call('ko')">Kickoff</ion-button>
+            
+          </div>
+
+    </ng-template>
+
   </ion-content>
