@@ -1,0 +1,12 @@
+ion-col > div {
+  background: #f8f8f8;
+  margin: 2px;
+  border: #eee;
+  padding: 5px;
+  min-height: 60px;
+  text-align: center;
+}
+
+.selected > div {
+  background: #dedede;
+}

@@ -28,7 +28,7 @@ export class FieldViewComponent implements AfterContentInit {
       canvasElementId: 'game',
       displayMode: ex.DisplayMode.Container,
       pointerScope: ex.Input.PointerScope.Canvas,
-        backgroundColor: ex.Color.fromRGB(25,111,12,1)
+        backgroundColor: ex.Color.fromRGB(25,111,12,.41)
     });
     //this.field = new Field();
     //this.engine.add(this.field);
