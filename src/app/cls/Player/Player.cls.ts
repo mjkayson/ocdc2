@@ -19,6 +19,46 @@ export class Player {
 
 }
 
+export class DefensivePlayer extends Player {
+  
+}
+
+export class MikeLinebacker extends DefensivePlayer {
+  letter = 'Mike';
+}
+
+export class WillLinebacker extends DefensivePlayer {
+  letter = 'Will';
+}
+
+export class SamLinebacker extends DefensivePlayer {
+  letter = 'Sam';
+}
+
+export class BuckLinebacker extends DefensivePlayer {
+  letter = 'Buck';
+}
+
+export class StrongSafety extends DefensivePlayer {
+  letter = 'SS';
+}
+
+export class FreeSafety extends DefensivePlayer {
+  letter = 'FS';
+}
+
+export class Cornerback extends DefensivePlayer {
+  letter = 'CB';
+}
+
+export class Nickelback extends DefensivePlayer {
+  letter = 'NB';
+}
+
+export class Dimeback extends DefensivePlayer {
+  letter = 'DB';
+}
+
 export class OffensivePlayer extends Player {
   public patternType:string;
 }

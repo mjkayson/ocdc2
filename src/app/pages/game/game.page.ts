@@ -6,6 +6,7 @@ import { Play } from 'src/app/cls/Play/Play.cls';
 import { PlayCallModalComponent } from 'src/app/components/play-call-modal/play-call-modal.component';
 
 import { AI } from '../../cls/AI/AI.cls';
+import { Playcall } from 'src/app/cls/Playcalls/Playcall.cls';
 
 @Component({
   selector: 'app-game',
@@ -43,16 +44,17 @@ export class GamePage implements OnInit {
     
     if (data.playcall !== null) {
       this.presnap = true;
-      this.player_playcall = data.playcall;
+      let onDefense = this.game.getCurrentGameState().possession == 'A';
+      let aiCall = AI.getPlaycall(this.game.getCurrentGameState());
+      this.playcall_off = onDefense? aiCall : data.playcall;
+      this.playcall_def = onDefense? data.playcall : aiCall;
     }
 
   }
 
   ready(){
-    this.playcall_off = '';
-    this.playcall_def = '';
-    // make AI playcall
-    this.ai_playcall = AI.getPlaycall(this.game.getCurrentGameState());
+    this.playcall_off = null;
+    this.playcall_def = null;
   }
 
   async showPlaycallPromptToast() {

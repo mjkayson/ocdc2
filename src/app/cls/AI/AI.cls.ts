@@ -1,16 +1,66 @@
 import { Siri } from '../Siri/Siri.cls';
+import { Playcall, OffensivePlaycall, DefensivePlaycall } from '../Playcalls/Playcall.cls';
+import { RouteConfigLoadEnd } from '@angular/router';
 
 export class AI {
 
   
   public static getPlaycall(gs){
-    switch(gs.play_type){
-      case 'KO': return 'ko';
-      case 'CNV': return 'pat';
-      case 'REG':
-      default   : return AI.getRegularPlaycall(gs);
-    }   
+    return AI.getRandomPlaycall();
+  }
 
+  public static getRandomPlaycall(){
+    let call = new OffensivePlaycall();
+    let pos = Siri.getRandomNumber(0, call.personnelOptions.length-1);
+    call.personnel = AI.getRandomOption(call.personnelOptions[0].opts);
+    console.log('AI personnel', call.personnel);
+    let formation = AI.getRandomOption(call.formationOptions[0].opts);
+    formation.setQbDepth(AI.getRandomOption(call.qbDepthOptions[0].opts));
+    formation.setStrongSide(AI.getRandomOption(call.strongSideOptions[0].opts));
+    console.log('AI formation', formation);
+    call.formation = formation;
+    let playType = AI.getRandomOption(call.playTypeOptions[0].opts);
+    console.log('AI playType', playType);
+    call.playType = playType;
+    if(playType.name == 'Run'){
+      call = AI.getRandomRun(call);
+    } else if(playType.name == 'Pass'){
+      call = AI.getRandomPass(call);
+    } else if(playType.name == 'RPO'){
+      // not done RPOs yet
+      call = AI.getRandomPass(call);
+    }
+    console.log('AI Call', call);
+    return call;
+  }
+
+  public static getRandomRun(call){
+    call.runCall = AI.getRandomOption(call.runCallOptions[0].opts);
+    call.blockingSchemes.push(AI.getRandomOption(call.runBlockingSchemeOptions[0].opts));
+    return call;
+  }
+
+  public static getRandomPass(call){
+    for(var i=0;i<Siri.getRandomNumber(2, 4);i++){
+      call.progression.push(AI.getRandomPassRoute(call));
+    }
+    return call;
+  }
+
+  public static getRandomPassRoute(call){
+    let rec = AI.getRandomOption(call.formation.getUnassignedReceivers());
+    let pattern = AI.getRandomOption(call.getPatternsByPosition(rec));
+    rec.setAssignment(pattern);
+    return rec;
+  }
+
+  public static getRandomRPO(call){
+    return call;
+  }
+
+  public static getRandomOption(options){
+    let pos = Siri.getRandomNumber(0, options.length-1);
+    return options[pos];
   }
 
   public static getRegularPlaycall(gs){

@@ -9,18 +9,6 @@ export class Formation {
   constructor(){
     
   }
-  
-  addSegment(segment){
-    this.segments.push(segment);
-  }
-
-  getCall(){
-    let call = '';
-    this.segments.forEach(el=>{
-      //call += ' '+el.getCall();
-    });
-    return call;
-  }
 
   text(){
     return 'override me';
@@ -29,6 +17,39 @@ export class Formation {
 }
 
 export class DefensiveFormation extends Formation {
+
+  blitzers:Player[] = [];
+
+  shift;
+
+  setShift(shift){
+    this.shift = shift;
+  }
+
+  text(){
+    let str = this.name;
+    if(this.shift){
+      if(!this.shift.doNotShowInPlaycall){
+        str += ' ' + this.shift.name;
+      }
+    }
+    return str;
+  }
+
+  
+  public getBlitzers(){
+    return this.blitzers;
+  }
+
+  public getUnassignedBlitzers(){
+    let recs = [];
+    this.blitzers.forEach(rec=>{
+      if(!rec.hasAssignment()){
+        recs.push(rec);
+      }
+    });
+    return recs;
+  }
 
 }
 
