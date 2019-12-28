@@ -7,7 +7,7 @@
 <ion-content class="ion-padding">
   <game-state [game]="game" type="max"></game-state>
   <field-view></field-view>
-  <div *ngIf="playcall_off" class="ion-text-center">{{ playcall_off.getFullText() }} - {{ playcall_def.getFullText() }}</div>
+  <div *ngIf="playcall_off" class="ion-text-center">{{ playcall_off.getFullText() }} vs. {{ playcall_def.getFullText() }}</div>
   <play-by-play [game]="game"></play-by-play>
   <ion-button expand="block" *ngIf="presnap" (click)="snap()">Snap</ion-button>
 

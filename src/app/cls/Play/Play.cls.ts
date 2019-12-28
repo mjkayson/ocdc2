@@ -2,19 +2,8 @@
 
 import { PlayCall } from '../../int/PlayCall.int';
 import { GameState } from '../GameState/GameState.cls';
-import  {
-          PlaySegment_Dropback,
-          PlaySegment_Handoff,
-          PlaySegment_Run,
-          PlaySegment_ShortPass,
-          PlaySegment_LongPass,
-
-          PlaySegment_Kickoff,
-          PlaySegment_Punt,
-          PlaySegment_FieldGoal,
-          PlaySegment_PAT
-        } from '../PlaySegment/PlaySegment.cls';
 import { PlayResult } from '../PlayResult/PlayResult.cls';
+import { OffensivePlaycall, DefensivePlaycall } from '../Playcalls/Playcall.cls';
 
 export class Play {
   playcall_off: PlayCall;
@@ -29,14 +18,15 @@ export class Play {
 
 
   constructor(gs:GameState){
-    
+    this.playResult = new PlayResult();
     this.game_state_start = gs;    
     
   }
 
-  setPlaycall(off, def){
+  setPlaycall(off:OffensivePlaycall, def:DefensivePlaycall){
     this.playcall_off = off;
     this.playcall_def = def;
+    /*
     if(off == 'short'){
       this.segments = [new PlaySegment_Dropback(def), new PlaySegment_ShortPass(def)];
     } else if(off == 'long'){
@@ -52,24 +42,23 @@ export class Play {
     } else {
       this.segments = [new PlaySegment_Handoff(def), new PlaySegment_Run(def)];
     }
+    */
   }
 
   getPlaycall(side){
     return side == 'off'? this.playcall_off : this.playcall_def;
   }
 
+  getOffensivePlaycall(){
+    return this.playcall_off;
+  }
+
+  getDefensivePlaycall(){
+    return this.playcall_def;
+  }
+
   run(){
-    this.started = true;
-    this.playResult = new PlayResult({}, this.game_state_start );
-    this.segments.forEach(segment => {
-      if(!this.finished){
-        this.resolveSegment(segment);
-      } else {
-        //this.setEndGameState();
-      }
-    });
-    //console.log('play result', this.playResult);
-    this.finished = true;
+    
   }
 
   getPlayResult(){
@@ -90,6 +79,10 @@ export class Play {
 
   setEndGameState(gs){
     this.game_state_end = gs;
+  }
+
+  addSegment(segment){
+    this.segments.push(segment);
   }
 
   resolveSegment(segment){

@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { GameState } from '../GameState/GameState.cls';
 import { Play } from '../Play/Play.cls';
 import { Team } from '../Team/Team.cls';
+import { OCDCEngine } from '../OCDCEngine/OCDCEngine.cls';
 
 @Injectable({
   providedIn: 'root'
@@ -80,11 +81,11 @@ export class GameService {
   /*
    * Implements the logic for end-of-play
    */
-  update(){
+  resolveCurrentPlay(){
 
     let play = this.getCurrentPlay();
     // TODO: this does not belong here
-    play.run();
+    OCDCEngine.resolve(this);
     let res = play.getPlayResult();
 
     let gs = new GameState(this.getCurrentPlay().getStartGameState());

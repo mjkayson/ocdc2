@@ -11,14 +11,11 @@ export class PlayResult {
   score_away: number = 0;
   data;
   start_game_state;
+  end_game_state;
+  segments:any = [];
 
-  constructor(data = null, game_state){
-    /*
-    for(var i in data){
-      this[i] = data[i];
-    }
-    */
-   this.start_game_state = game_state;
+  constructor(){
+    
    this.commentary = [];
    this.data = {};
 
@@ -26,6 +23,10 @@ export class PlayResult {
 
   getStartGameState(){
     return this.start_game_state;
+  }
+
+  addResultSegment(segment){
+    this.segments.push(segment);
   }
 
   addCommentary(str){

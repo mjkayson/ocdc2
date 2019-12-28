@@ -42,7 +42,7 @@ export class PlayCallModalComponent implements OnInit {
   }
 
   init(){
-    this.onDefense = true; //this.gameState.possession == 'A'? true : false;
+    this.onDefense = this.gameState.possession == 'A'? true : false;
     this.playcall = this.onDefense? new DefensivePlaycall() : new OffensivePlaycall();
   }
 

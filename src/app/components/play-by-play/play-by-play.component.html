@@ -1,6 +1,7 @@
 <div #playByPlay id="playByPlay">
     <ion-grid class="ion-no-padding" *ngIf="game.getLastPlayResult()">
         <div *ngFor="let result of game.getCurrentDrivePlayResults()">
+          <!--
           <div class="ion-no-padding" *ngIf="result.getStartGameState().play_type == 'REG'; else min">
             <ion-row>
             
@@ -38,6 +39,7 @@
                 </ion-col>
               </ion-row>
           </ng-template>
+        -->
         </div>
     </ion-grid>
 </div>

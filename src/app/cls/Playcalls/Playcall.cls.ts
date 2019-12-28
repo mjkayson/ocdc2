@@ -11,7 +11,7 @@ export class Playcall {
   //personnel:PersonnelPackage = new PersonnelPackage();
 
   personnelOptions:any = [];
-  formationOptions:any = [];
+  formationOptions:any = []
 
   options;
   phase:number = 0;
@@ -347,7 +347,7 @@ export class OffensivePlaycall extends Playcall {
   setRunPhase(opt){
     switch(this.phase){
       case 5: this.runCall = opt; break;
-      default: this.blockingSchemes.push(opt);
+      default: this.ready = true; this.blockingSchemes.push(opt);
     }
   }
 
@@ -390,7 +390,7 @@ export class OffensivePlaycall extends Playcall {
   }
 
   getPhasePositionOptions(){
-    return this.formation.getUassignedReceivers();
+    return this.formation.getUnassignedReceivers();
   }
 
   setPhasePositionOption(pos){

@@ -6,12 +6,28 @@ export class AI {
 
   
   public static getPlaycall(gs){
-    return AI.getRandomPlaycall();
+    return gs.possession == 'A'? AI.getRandomOffensivePlaycall() : AI.getRandomDefensivePlaycall();
   }
 
-  public static getRandomPlaycall(){
+  public static getRandomDefensivePlaycall(){
+    let call = new DefensivePlaycall();
+    call.personnel = AI.getRandomOption(call.personnelOptions[0].opts);
+    let formation = AI.getRandomOption(call.formationOptions[0].opts);
+    formation.setShift(AI.getRandomOption(call.shiftOptions[0].opts));
+    call.formation = formation;
+    call.stunt = AI.getRandomOption(call.stuntOptions[0].opts);
+    call.coverage = AI.getRandomOption(call.coverageOptions[0].opts);
+    if(Siri.getRandomNumber(1, 3) == 3){
+      let player = AI.getRandomOption(call.formation.getUnassignedBlitzers());
+      let blitz = AI.getRandomOption(call.blitzOptions[0].opts);
+      player.setAssignment(blitz);
+      call.blitzes.push(player);
+    }
+    return call;
+  }
+
+  public static getRandomOffensivePlaycall(){
     let call = new OffensivePlaycall();
-    let pos = Siri.getRandomNumber(0, call.personnelOptions.length-1);
     call.personnel = AI.getRandomOption(call.personnelOptions[0].opts);
     console.log('AI personnel', call.personnel);
     let formation = AI.getRandomOption(call.formationOptions[0].opts);

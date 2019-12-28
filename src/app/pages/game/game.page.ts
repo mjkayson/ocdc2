@@ -87,7 +87,7 @@ export class GamePage implements OnInit {
     play.setPlaycall(this.playcall_off, this.playcall_def);
     this.game.addPlay(play);    
 
-    this.game.update();
+    this.game.resolveCurrentPlay();
     this.showPlaycallPromptToast();
   }
 
