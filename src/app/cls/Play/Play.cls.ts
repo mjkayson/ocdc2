@@ -10,7 +10,7 @@ export class Play {
   playcall_def: PlayCall;
   game_state_start: GameState;
   game_state_end: GameState;
-  segments;
+  segments:any = [];
   possession: number = 0;
   playResult: PlayResult;
   started: boolean = false;
@@ -62,7 +62,8 @@ export class Play {
   }
 
   getPlayResult(){
-    return this.playResult;
+    return this.segments;
+    //return this.playResult;
   }
 
   getStartGameState(){
@@ -83,6 +84,10 @@ export class Play {
 
   addSegment(segment){
     this.segments.push(segment);
+  }
+
+  getLastSegment(){
+    return this.segments[this.segments.length-1];
   }
 
   resolveSegment(segment){

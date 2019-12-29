@@ -48,6 +48,11 @@ export class GamePage implements OnInit {
       let aiCall = AI.getPlaycall(this.game.getCurrentGameState());
       this.playcall_off = onDefense? aiCall : data.playcall;
       this.playcall_def = onDefense? data.playcall : aiCall;
+      
+      let play = new Play(this.game.getCurrentGameState());
+      play.setPlaycall(this.playcall_off, this.playcall_def);
+      this.game.addPlay(play);   
+
     }
 
   }
@@ -79,14 +84,6 @@ export class GamePage implements OnInit {
 
   snap(){
     this.presnap = false;
-    // do play creation here too for now
-    let gs = this.game.getCurrentGameState();
-    let play = new Play(gs);
-    this.playcall_off = gs.possession == 'A'? this.ai_playcall : this.player_playcall;
-    this.playcall_def = gs.possession == 'H'? this.ai_playcall : this.player_playcall;
-    play.setPlaycall(this.playcall_off, this.playcall_def);
-    this.game.addPlay(play);    
-
     this.game.resolveCurrentPlay();
     this.showPlaycallPromptToast();
   }

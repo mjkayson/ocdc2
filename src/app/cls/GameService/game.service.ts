@@ -87,9 +87,13 @@ export class GameService {
     // TODO: this does not belong here
     OCDCEngine.resolve(this);
     let res = play.getPlayResult();
+    console.log(res);
+    
 
     let gs = new GameState(this.getCurrentPlay().getStartGameState());
     gs.clock -= res.time;
+    /*
+    
     switch(gs.play_type){
       case 'CNV': gs = this.resolveTwoPointTry(res, gs); break;
       case 'PAT': gs = this.resolvePAT(res, gs); break;
@@ -99,6 +103,7 @@ export class GameService {
     }
 
     //console.log('gs', gs);
+    */
 
     gs = this.checkClock(res, gs);
     play.setEndGameState(gs);

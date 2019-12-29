@@ -14,9 +14,29 @@ export class PlaySegment {
   end_of_play: boolean = false; // 1 for yes
   commentary: string = ""; // text commentary
   data;
+  play;
+  name:string = 'PlaySegment';
+  OC;
+  DC;
+  ballX:number = 5; // 1-9 from left to right on the field
+  ballLineX:number = 5; // 1-9 from left to right on the line
+  ballY:number = 0; // yds from LoS
 
-  constructor(){
-    
+  carryOver:number = 0;
+  rand:number; // base rng, 1-100
+  offAdj:number = 0;
+  defAdj:number = 0;
+  res:number = 0;
+
+  lastSegment;
+
+
+  constructor(play){
+    this.play = play;
+    this.OC = play.getOffensivePlaycall();
+    this.DC = play.getDefensivePlaycall();
+    this.rand = Siri.getRandomNumber(1,100);
+    this.lastSegment = play.getLastSegment();
   }
 
   // any rng calculations for the segment happen here
@@ -28,25 +48,16 @@ export class PlaySegment {
 
 }
 
-export class PlaySegment_Dropback extends PlaySegment {
+export class PS_Snap extends PlaySegment {
+
+  name = 'Snap';
 
   eval(){
-
     this.time = 1;
-
+    this.ballY = this.OC.formation.qbDepth.qb_depth;
   }
 
 }
-
-export class PlaySegment_Handoff extends PlaySegment {
-
-  eval(){
-
-  }
-
-}
-
-
 
 
 

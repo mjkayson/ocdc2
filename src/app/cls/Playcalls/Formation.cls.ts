@@ -4,7 +4,6 @@ import { Player } from '../Player/Player.cls';
 export class Formation {
 
   name:string = '';
-  segments:any = [];
 
   constructor(){
     
@@ -18,7 +17,8 @@ export class Formation {
 
 export class DefensiveFormation extends Formation {
 
-  blitzers:Player[] = [];
+  public blitzers:Player[] = [];
+  public downLinemen:number;
 
   shift;
 
