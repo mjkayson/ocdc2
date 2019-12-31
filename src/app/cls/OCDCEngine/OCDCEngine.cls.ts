@@ -12,9 +12,9 @@ export class OCDCEngine {
     let play = game.getCurrentPlay();
     while(play.finished == false){
       play.segments.push(OCDCEngine.nextSegment(play));
-      console.log('ballY', play.getLastSegment().ballY);
+      //console.log('ballY', play.getLastSegment().ballY);
     }
-    console.log('gain of', play.getLastSegment().ballY);
+    //console.log('gain of', play.getLastSegment().ballY);
   }
 
   static nextSegment(play:Play){

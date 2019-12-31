@@ -29,6 +29,7 @@ export class PlaySegment {
   res:number = 0;
 
   lastSegment;
+  endsOn:number = 0;
 
 
   constructor(play){

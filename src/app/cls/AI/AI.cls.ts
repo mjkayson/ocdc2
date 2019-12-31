@@ -29,14 +29,15 @@ export class AI {
   public static getRandomOffensivePlaycall(){
     let call = new OffensivePlaycall();
     call.personnel = AI.getRandomOption(call.personnelOptions[0].opts);
-    console.log('AI personnel', call.personnel);
+    //console.log('AI personnel', call.personnel);
     let formation = AI.getRandomOption(call.formationOptions[0].opts);
     formation.setQbDepth(AI.getRandomOption(call.qbDepthOptions[0].opts));
     formation.setStrongSide(AI.getRandomOption(call.strongSideOptions[0].opts));
-    console.log('AI formation', formation);
+    //console.log('AI formation', formation);
     call.formation = formation;
-    let playType = AI.getRandomOption(call.playTypeOptions[0].opts);
-    console.log('AI playType', playType);
+    //let playType = AI.getRandomOption(call.playTypeOptions[0].opts);
+    let playType = call.playTypeOptions[0].opts[0];
+    //console.log('AI playType', playType);
     call.playType = playType;
     if(playType.name == 'Run'){
       call = AI.getRandomRun(call);
@@ -46,7 +47,7 @@ export class AI {
       // not done RPOs yet
       call = AI.getRandomPass(call);
     }
-    console.log('AI Call', call);
+    //console.log('AI Call', call);
     return call;
   }
 

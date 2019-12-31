@@ -60,12 +60,15 @@ export class GameService {
   }
 
   getCurrentPlay(){
-    //console.log('current play', this.plays[this.plays.length-1]);
     return this.plays[this.plays.length-1];
   }
 
   getLastPlayResult(){
     return this.getCurrentPlay().getPlayResult();
+  }
+
+  getLastPlay(){    
+    return this.getCurrentPlay();
   }
 
   getCurrentDrivePlayResults(){
@@ -87,7 +90,7 @@ export class GameService {
     // TODO: this does not belong here
     OCDCEngine.resolve(this);
     let res = play.getPlayResult();
-    console.log(res);
+    //console.log(res);
     
 
     let gs = new GameState(this.getCurrentPlay().getStartGameState());

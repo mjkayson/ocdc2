@@ -13,6 +13,8 @@ import { PlayByPlayComponent } from 'src/app/components/play-by-play/play-by-pla
 import { FieldViewComponent } from 'src/app/components/field-view/field-view.component';
 import { PlayCallModalComponent } from 'src/app/components/play-call-modal/play-call-modal.component';
 
+import { DevToolsComponent } from 'src/app/components/dev-tools/dev-tools.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,7 +22,14 @@ import { PlayCallModalComponent } from 'src/app/components/play-call-modal/play-
     IonicModule,
     GamePageRoutingModule
   ],
-  declarations: [GamePage, GameStateComponent, PlayByPlayComponent, FieldViewComponent, PlayCallModalComponent],
+  declarations: [
+    GamePage,
+    GameStateComponent,
+    PlayByPlayComponent,
+    FieldViewComponent,
+    PlayCallModalComponent,
+    DevToolsComponent
+  ],
   entryComponents: [
     PlayCallModalComponent
   ]

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastController, ModalController } from '@ionic/angular';
 
 import { GameService } from '../../cls/GameService/game.service';
@@ -7,19 +7,26 @@ import { PlayCallModalComponent } from 'src/app/components/play-call-modal/play-
 
 import { AI } from '../../cls/AI/AI.cls';
 import { Playcall } from 'src/app/cls/Playcalls/Playcall.cls';
+import { Siri } from '../../cls/Siri/Siri.cls';
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.page.html',
   styleUrls: ['./game.page.scss'],
 })
-export class GamePage implements OnInit {
+export class GamePage implements OnInit {  
+
+  @ViewChild('devTools', {static: false}) devTools:any;
 
   presnap:boolean = false;
   ai_playcall;
   player_playcall;
   playcall_off;
   playcall_def;
+
+  simulating:boolean = false;
+  simCount:number = 0;
+  results:any = [];
 
   constructor(public toastController: ToastController,
               public modalController: ModalController,
@@ -82,9 +89,39 @@ export class GamePage implements OnInit {
     toast.present();
   }
 
+  simulate(){
+    this.simulating = true;
+    //this.simCount = 0;
+
+    for(var i=0;i<100;i++){
+      this.playcall_off = AI.getRandomOffensivePlaycall();
+      this.playcall_def = AI.getRandomDefensivePlaycall();
+      
+      let play = new Play(this.game.getCurrentGameState());
+      play.setPlaycall(this.playcall_off, this.playcall_def);
+      this.game.addPlay(play);   
+
+      this.game.resolveCurrentPlay();
+      let res = this.game.getLastPlay();
+      let segment = res.getLastSegment();
+      let offset = (Siri.getRandomNumber(100,500)/1000);
+      if(Siri.getRandomNumber(1,2) == 2) offset *= -1;
+      let y = res.segments.length + offset;
+      this.devTools.update([segment.ballY, y]);
+      this.simCount++;
+
+    }
+    
+    this.simulating = false;
+  }
+
   snap(){
     this.presnap = false;
     this.game.resolveCurrentPlay();
+    let play = this.game.getLastPlay();
+    let segment = play.getLastSegment();
+    console.log([segment.ballY, play.segments.length]);
+    this.devTools.update([segment.ballY, play.segments.length]);
     this.showPlaycallPromptToast();
   }
 

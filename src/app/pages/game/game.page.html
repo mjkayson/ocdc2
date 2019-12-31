@@ -1,15 +1,20 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>GAME</ion-title>
+    <ion-title>-</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <game-state [game]="game" type="max"></game-state>
-  <field-view></field-view>
-  <div *ngIf="playcall_off" class="ion-text-center">{{ playcall_off.getFullText() }} vs. {{ playcall_def.getFullText() }}</div>
+  <!--<game-state [game]="game" type="max"></game-state>-->
+  <!--<field-view></field-view>-->
+  <dev-tools #devTools></dev-tools>
+  <!--
+  <div *ngIf="playcall_off" class="playDisplay ion-text-center">{{ playcall_off.getFullText() }} vs. {{ playcall_def.getFullText() }}</div>
   <play-by-play [game]="game"></play-by-play>
   <ion-button expand="block" *ngIf="presnap" (click)="snap()">Snap</ion-button>
+  -->
+  <ion-button expand="block" *ngIf="!simulating" (click)="simulate()">Simulate</ion-button>
+  {{ simCount }}
 
 
 </ion-content>
