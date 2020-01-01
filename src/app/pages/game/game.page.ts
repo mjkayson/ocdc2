@@ -93,7 +93,7 @@ export class GamePage implements OnInit {
     this.simulating = true;
     //this.simCount = 0;
 
-    for(var i=0;i<100;i++){
+    for(var i=0;i<10000;i++){
       this.playcall_off = AI.getRandomOffensivePlaycall();
       this.playcall_def = AI.getRandomDefensivePlaycall();
       

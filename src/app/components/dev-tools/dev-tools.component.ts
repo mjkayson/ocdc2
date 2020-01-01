@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild, AfterContentInit } from '@angular/core';
+import { Component, ViewChild, AfterContentInit } from '@angular/core';
 
 var Highcharts = require('highcharts');
-require('highcharts/modules/histogram-bellcurve')(Highcharts);
 
 @Component({
   selector: 'dev-tools',
@@ -21,25 +20,67 @@ export class DevToolsComponent implements AfterContentInit {
     long: 0
   };
 
+  chartData:any = [];
+  dataSet:any = [];
+
   constructor() { }
 
   ngAfterContentInit() {
     setTimeout(()=>this.drawChart(), 250);
+    setInterval(()=>this.setChartData(), 1000);
   }
 
-  /*
+  getChartData(){
+    return this.chartData;
+  }
+
+  setChartData(){
+    this.chartData = [];
+    for(var i=0;i<40;i++){
+      this.chartData.push({ x: i-10, y: this.getYValue(i-10)});
+    }
+    //console.log(this.chartData, this.dataSet);
+    this.scatter.series[0].setData(this.chartData);
+  }
+
+  getYValue(x){
+    let count = 0;
+    for(var j=0;j<this.dataSet.length;j++){
+      if(this.dataSet[j] == x) count++;
+    }
+    //console.log(count, this.dataSet.length);
+    return count/this.dataSet.length * 100;
+
+  }
+
+
   drawChart(){
     this.scatter = Highcharts.chart(this.chart.nativeElement, {
       chart: {
-        margin: [0,0,20,0],
-        height: 400
+        margin: [10,0,20,35],
+        height: 260
       },
       credits: { enabled: false },
       tooltip: { enabled: false },
       legend:  { enabled: false },
       title:   { text: null },
+      xAxis: {
+        min: -10,
+        max: 30,
+        gridLineWidth: 1,
+        startOnTick: true,
+        tickLength: 5,
+        tickPositions: [-9,-7,-5,-3,-1,1,3,5,7,9,11,13,15,17,19,21,23,25,27,29]
+      },
+      yAxis: {
+        title: null,
+        min: 0,
+        max: 16,
+        tickInterval: 2
+
+      },
       series: [{
-          type: 'scatter',
+          type: 'line',
           name: 'Distribution',
           data: [],
           marker: {
@@ -48,60 +89,10 @@ export class DevToolsComponent implements AfterContentInit {
       }]
     });
   }
-  */  
-
-
-  drawChart(){
-    var data = [-5,-3,-2,-1,-1,-1,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,4,4,4,5,5,5,7,11,16];
-
-    this.scatter = Highcharts.chart(this.chart.nativeElement, {
-      chart: {
-        type: 'histogram',
-        margin: [0,0,20,35],
-        height: 400
-      },
-      credits: { enabled: false },
-      tooltip: { enabled: false },
-      legend:  { enabled: false },
-      title:   { text: null },
-      xAxis: [{
-        title: { text: 'Data' },
-        alignTicks: false
-      }, {
-          title: { text: 'Histogram' },
-          alignTicks: false,
-          opposite: true
-      }],
-
-      yAxis: [{
-          title: { text: 'Data' }
-      }, {
-          title: { text: 'Histogram' },
-          opposite: true
-      }],
-
-      series: [{
-          name: 'Histogram',
-          type: 'histogram',
-          xAxis: 1,
-          yAxis: 1,
-          baseSeries: 's1',
-          zIndex: -1
-      }, {
-          name: 'Data',
-          type: 'scatter',
-          data: data,
-          id: 's1',
-          marker: {
-              radius: 1.5
-          }
-      }]
-    });
-  }  
 
   addResult(gain){
-    
-    gain = Math.round(gain);
+    this.dataSet.push(gain);
+
     if(gain < -1){
       this.results.loss++;
     } else if(gain < 1){
@@ -117,10 +108,12 @@ export class DevToolsComponent implements AfterContentInit {
     } 
   }
 
-  update(dataPoint){    
-    this.addResult(dataPoint[0]);
-    console.log(this.scatter.series[0]);
-    this.scatter.series[0].addPoint(dataPoint[0], true, false, false);
+  update(dataPoint){   
+    
+    let gain = Math.round(dataPoint[0]); 
+    this.addResult(gain);
+    //this.setChartData();
+    //this.scatter.series[0].addPoint(dataPoint[0], true, false, false);
   }
 
   /*

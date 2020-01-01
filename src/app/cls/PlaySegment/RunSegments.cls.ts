@@ -33,8 +33,8 @@ export class RS_Transfer extends RunSegment {
 
   eval(){
     this.endsOn = 1;
-    this.offAdj = 25;
-    this.ballY = (Siri.getRandomNumber(200,500)/100) * -1;
+    //this.offAdj = 25;
+    this.ballY = (Siri.getRandomNumber(200,550)/100) * -1;
   }
 }
 
@@ -42,9 +42,9 @@ export class RS_Line extends RunSegment {
   name = 'Line';
 
   eval(){
-    this.endsOn = 10;
+    this.endsOn = 3;
     // headcount
-    this.gain = Siri.getRandomNumber(100,200) / 100;
+    this.gain = Siri.getRandomNumber(100,250) / 100;
     this.ballY = this.gain + this.lastSegment.ballY;
     if(this.ballY < -1){
       //this.ballY = -1;
@@ -66,7 +66,7 @@ export class RS_Location extends RunSegment {
   name = 'Location';
 
   eval(){
-    this.endsOn = 30;
+    this.endsOn = 40;
     this.ballY = (Siri.getRandomNumber(0,300)/100) + this.lastSegment.ballY;
     //this.defAdj = 20;   
   }
