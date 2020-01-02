@@ -1,5 +1,6 @@
 
 import { Siri } from '../Siri/Siri.cls';
+import { NumericValueAccessor } from '@ionic/angular';
 
 export class PlaySegment {
   time: number = 0; // play duration, seconds
@@ -29,7 +30,9 @@ export class PlaySegment {
   res:number = 0;
 
   lastSegment;
+  segmentNumber:number;
   endsOn:number = 0;
+
 
 
   constructor(play){
@@ -38,10 +41,15 @@ export class PlaySegment {
     this.DC = play.getDefensivePlaycall();
     this.rand = Siri.getRandomNumber(1,100);
     this.lastSegment = play.getLastSegment();
+    this.segmentNumber = play.segments.length;
   }
 
   // any rng calculations for the segment happen here
   eval(){}
+
+  resolve(){}
+
+  setAdj(){}
 
   get(key){
     return this[key];

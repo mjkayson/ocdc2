@@ -53,7 +53,8 @@ export class AI {
 
   public static getRandomRun(call){
     call.runCall = AI.getRandomOption(call.runCallOptions[0].opts);
-    call.blockingSchemes.push(AI.getRandomOption(call.runBlockingSchemeOptions[0].opts));
+    call.blockingSchemes.push(call.runBlockingSchemeOptions[0].opts[3]);
+    //call.blockingSchemes.push(AI.getRandomOption(call.runBlockingSchemeOptions[0].opts));
     return call;
   }
 

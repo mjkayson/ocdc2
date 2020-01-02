@@ -8,6 +8,7 @@ import { PlayCallModalComponent } from 'src/app/components/play-call-modal/play-
 import { AI } from '../../cls/AI/AI.cls';
 import { Playcall } from 'src/app/cls/Playcalls/Playcall.cls';
 import { Siri } from '../../cls/Siri/Siri.cls';
+import { OCDCEngine } from '../../cls/OCDCEngine/OCDCEngine.cls';
 
 @Component({
   selector: 'app-game',
@@ -89,9 +90,10 @@ export class GamePage implements OnInit {
     toast.present();
   }
 
-  simulate(){
+  simulate(adj){
     this.simulating = true;
     //this.simCount = 0;
+    this.devTools.newSeries();
 
     for(var i=0;i<10000;i++){
       this.playcall_off = AI.getRandomOffensivePlaycall();
@@ -100,6 +102,8 @@ export class GamePage implements OnInit {
       let play = new Play(this.game.getCurrentGameState());
       play.setPlaycall(this.playcall_off, this.playcall_def);
       this.game.addPlay(play);   
+      
+      OCDCEngine.resolve(this.game, !adj);
 
       this.game.resolveCurrentPlay();
       let res = this.game.getLastPlay();

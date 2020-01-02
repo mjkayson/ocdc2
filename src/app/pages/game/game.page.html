@@ -13,8 +13,9 @@
   <play-by-play [game]="game"></play-by-play>
   <ion-button expand="block" *ngIf="presnap" (click)="snap()">Snap</ion-button>
   -->
-  <ion-button expand="block" *ngIf="!simulating" (click)="simulate()">Simulate</ion-button>
-  {{ simCount }}
+  <ion-button expand="block" size="small" *ngIf="!simulating" (click)="simulate(true)">Simulate</ion-button>
+  <ion-button expand="block" size="small" *ngIf="!simulating" (click)="simulate(false)">Simulate (no Adj)</ion-button>
+  <div class="playDisplay">Simulations: {{ simCount }}</div>
 
 
 </ion-content>

@@ -88,7 +88,6 @@ export class GameService {
 
     let play = this.getCurrentPlay();
     // TODO: this does not belong here
-    OCDCEngine.resolve(this);
     let res = play.getPlayResult();
     //console.log(res);
     

@@ -8,10 +8,14 @@ import * as RunSegment from '../PlaySegment/RunSegments.cls';
 
 export class OCDCEngine {
 
-  public static resolve(game:GameService){
+  public static resolve(game:GameService, noAdj?){
     let play = game.getCurrentPlay();
     while(play.finished == false){
-      play.segments.push(OCDCEngine.nextSegment(play));
+      let segment:any = OCDCEngine.nextSegment(play);
+      if(!noAdj) segment.setAdj();
+      segment.eval();
+      segment.resolve();
+      play.segments.push(segment);
       //console.log('ballY', play.getLastSegment().ballY);
     }
     //console.log('gain of', play.getLastSegment().ballY);
@@ -31,7 +35,7 @@ export class OCDCEngine {
     switch(play.segments.length){
       case 0: return new PlaySegment.PS_Snap(play);
       case 1: return new RunSegment.RS_Transfer(play);
-      case 2: return new RunSegment.RS_Line(play);
+      case 2: return new RunSegment.RS_Line(play); 
       case 3: return new RunSegment.RS_Line(play);
       case 4: return new RunSegment.RS_Location(play);
       case 5: return new RunSegment.RS_Location(play);
@@ -40,7 +44,6 @@ export class OCDCEngine {
       case 8: return new RunSegment.RS_Secondary(play);
       case 9: return new RunSegment.RS_Break(play);
     }
-
 
   }
 

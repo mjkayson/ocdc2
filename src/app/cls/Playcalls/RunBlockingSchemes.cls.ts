@@ -13,7 +13,10 @@ export class RunBlockingScheme_Lead extends BlockingScheme {
 }
 
 export class RunBlockingScheme_Power extends BlockingScheme {
-  public name:string = 'Power'; 
+  public name:string = 'Power';
+  public line = -5;
+  public location = 8;
+  public box = 0;  
 }
 
 export class RunBlockingScheme_Trap extends BlockingScheme {

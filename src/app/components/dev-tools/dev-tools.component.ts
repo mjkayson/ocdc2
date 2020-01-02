@@ -22,6 +22,7 @@ export class DevToolsComponent implements AfterContentInit {
 
   chartData:any = [];
   dataSet:any = [];
+  currentSeries:number = 0;
 
   constructor() { }
 
@@ -40,7 +41,7 @@ export class DevToolsComponent implements AfterContentInit {
       this.chartData.push({ x: i-10, y: this.getYValue(i-10)});
     }
     //console.log(this.chartData, this.dataSet);
-    this.scatter.series[0].setData(this.chartData);
+    this.scatter.series[this.currentSeries].setData(this.chartData);
   }
 
   getYValue(x){
@@ -53,10 +54,17 @@ export class DevToolsComponent implements AfterContentInit {
 
   }
 
+  newSeries(){
+    this.dataSet = [];
+    this.scatter.addSeries({ data: [] });
+    this.currentSeries++;
+  }
+
 
   drawChart(){
     this.scatter = Highcharts.chart(this.chart.nativeElement, {
       chart: {
+        type: 'area',
         margin: [10,0,20,35],
         height: 260
       },
@@ -70,22 +78,27 @@ export class DevToolsComponent implements AfterContentInit {
         gridLineWidth: 1,
         startOnTick: true,
         tickLength: 5,
-        tickPositions: [-9,-7,-5,-3,-1,1,3,5,7,9,11,13,15,17,19,21,23,25,27,29]
+        tickPositions: [-9,-7,-5,-3,-1,1,3,5,7,9,11,13,15,17,19,21,23,25,27,29],
+        plotLines: [{
+          color: '#454545',
+          width: 1,
+          value: 0,
+          zIndex:999
+      }]
       },
       yAxis: {
         title: null,
         min: 0,
         max: 16,
         tickInterval: 2
-
+      },
+      plotOptions: {
+        area: {
+          fillOpacity: .25
+        }
       },
       series: [{
-          type: 'line',
-          name: 'Distribution',
-          data: [],
-          marker: {
-              radius: 1
-          }
+        data: []
       }]
     });
   }
