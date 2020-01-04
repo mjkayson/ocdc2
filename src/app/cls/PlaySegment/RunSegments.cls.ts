@@ -8,17 +8,31 @@ import { ɵConsole } from '@angular/core';
 export class RunSegment extends PlaySegment {  
   public name:string = 'override me too';
 
+  gainMin:number;
+  gainMax:number;
+  negative:boolean = false;
+
+  constructor(play, data){
+    super(play);
+    this.name = data.name;
+    this.gainMax = data.max;
+    this.gainMin = data.min;
+    this.negative = data.negative;
+    this.endsOn = data.endsOn;
+  }
+
+  eval(){
+    this.ballY = (Siri.getRandomNumber(this.gainMin,this.gainMax)/100);
+    if(this.segmentNumber > 1) this.ballY += this.lastSegment.ballY;
+    if(this.negative) this.ballY *= -1;
+    //console.log(this.segmentNumber, this.ballY);
+  }
+
   resolve(){
-    if(this.play.segments.length){
-      this.carryOver = this.lastSegment.carryOver;
-    } else {
-      this.carryOver = 0;
-    }
-    let adj = this.carryOver + this.offAdj - this.defAdj;
+    let adj = this.offAdj - this.defAdj;    
     this.res = this.rand + adj;
     if(this.res <= this.endsOn){
-      this.play.finished = true;
-      
+      this.play.finished = true;      
     }
   }
 
@@ -36,9 +50,16 @@ export class RunSegment extends PlaySegment {
 
 }
 
+
+
+
+
+
+/*
+
 export class RS_Transfer extends RunSegment {
   public name:string = 'transfer';
-  endsOn = 1;
+  endsOn = 0;
 
   eval(){
     this.ballY = (Siri.getRandomNumber(200,550)/100) * -1;
@@ -47,7 +68,7 @@ export class RS_Transfer extends RunSegment {
 
 export class RS_Line extends RunSegment {
   name = 'line';
-  endsOn = 10;
+  endsOn = 3;
 
   eval(){
     
@@ -56,27 +77,16 @@ export class RS_Line extends RunSegment {
     if(this.ballY < -1){
       //this.ballY = -1;
     }
-    /*
-    for(var i=0;i<5;i++){
-      this.offAdj += Siri.getRandomNumber(1,10);
-    }
-    for(var i=0;i<this.DC.formation.downLinemen;i++){
-      this.defAdj += Siri.getRandomNumber(1,10);
-    }
-    */
   }
 
 }
 
 export class RS_Location extends RunSegment {
-  name = 'location';
+  name = 'location1';
   endsOn = 40;
-
   eval(){
     this.ballY = (Siri.getRandomNumber(100,300)/100) + this.lastSegment.ballY;
-    
   }
-
 }
 
 export class RS_Box extends RunSegment {
@@ -110,5 +120,6 @@ export class RS_Break extends RunSegment {
   }
 }
 
+*/
 
 

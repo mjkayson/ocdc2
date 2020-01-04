@@ -6,12 +6,44 @@ export class AI {
 
   
   public static getPlaycall(gs){
-    return gs.possession == 'A'? AI.getRandomOffensivePlaycall() : AI.getRandomDefensivePlaycall();
+    return gs.possession == 'A'? AI.getSpecificOffensivePlaycall() : AI.getSpecificDefensivePlaycall();
+    //return gs.possession == 'A'? AI.getRandomOffensivePlaycall() : AI.getRandomDefensivePlaycall();
+  }
+
+  static getSpecificOffensivePlaycall(){
+    let call = new OffensivePlaycall();
+    call.personnel = call.personnelOptions[0].opts[4]; // 11
+
+    let formation = call.formationOptions[0].opts[1]; // Single
+    formation.setQbDepth(call.qbDepthOptions[0].opts[0]); // -
+    formation.setStrongSide(call.strongSideOptions[0].opts[0]); // Right
+    call.formation = formation;
+
+    let playType = call.playTypeOptions[0].opts[0]; // Run
+    call.playType = playType;
+
+    call.runCall = call.runCallOptions[0].opts[8]; // 28
+    call.blockingSchemes.push(call.runBlockingSchemeOptions[0].opts[2]); // Lead
+
+    return call;
+  }
+
+  static getSpecificDefensivePlaycall(){
+    let call = new DefensivePlaycall();
+    call.personnel = call.personnelOptions[0].opts[0]; // 43
+    let formation = call.formationOptions[0].opts[2]; // 4-3
+    formation.setShift(call.shiftOptions[0].opts[2]); // Under
+    call.formation = formation;
+    call.stunt = call.stuntOptions[0].opts[2]; // Weak
+    call.coverage = call.coverageOptions[0].opts[1]; // Cover 2
+    // no blitzes yet
+
+    return call;
   }
 
   public static getRandomDefensivePlaycall(){
     let call = new DefensivePlaycall();
-    call.personnel = AI.getRandomOption(call.personnelOptions[0].opts);
+    call.personnel = AI.getRandomOption(call.personnelOptions[0].opts);    
     let formation = AI.getRandomOption(call.formationOptions[0].opts);
     formation.setShift(AI.getRandomOption(call.shiftOptions[0].opts));
     call.formation = formation;
@@ -52,9 +84,10 @@ export class AI {
   }
 
   public static getRandomRun(call){
+    //call.runCall = call.runCallOptions[0].opts[8];
+    //call.blockingSchemes.push(call.runBlockingSchemeOptions[0].opts[3]);
     call.runCall = AI.getRandomOption(call.runCallOptions[0].opts);
-    call.blockingSchemes.push(call.runBlockingSchemeOptions[0].opts[3]);
-    //call.blockingSchemes.push(AI.getRandomOption(call.runBlockingSchemeOptions[0].opts));
+    call.blockingSchemes.push(AI.getRandomOption(call.runBlockingSchemeOptions[0].opts));
     return call;
   }
 

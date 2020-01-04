@@ -95,6 +95,11 @@ export class DevToolsComponent implements AfterContentInit {
       plotOptions: {
         area: {
           fillOpacity: .25
+        },
+        series: {
+          marker: {
+              enabled: false
+          }
         }
       },
       series: [{

@@ -96,8 +96,11 @@ export class GamePage implements OnInit {
     this.devTools.newSeries();
 
     for(var i=0;i<10000;i++){
-      this.playcall_off = AI.getRandomOffensivePlaycall();
-      this.playcall_def = AI.getRandomDefensivePlaycall();
+      //this.playcall_off = AI.getRandomOffensivePlaycall();
+      //this.playcall_def = AI.getRandomDefensivePlaycall();
+
+      this.playcall_off = AI.getSpecificOffensivePlaycall();
+      this.playcall_def = AI.getSpecificDefensivePlaycall();
       
       let play = new Play(this.game.getCurrentGameState());
       play.setPlaycall(this.playcall_off, this.playcall_def);
@@ -124,7 +127,7 @@ export class GamePage implements OnInit {
     this.game.resolveCurrentPlay();
     let play = this.game.getLastPlay();
     let segment = play.getLastSegment();
-    console.log([segment.ballY, play.segments.length]);
+    //console.log([segment.ballY, play.segments.length]);
     this.devTools.update([segment.ballY, play.segments.length]);
     this.showPlaycallPromptToast();
   }

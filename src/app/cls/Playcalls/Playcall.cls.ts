@@ -335,6 +335,18 @@ export class OffensivePlaycall extends Playcall {
 
   }
 
+  isInsideRun(){
+    if(!this.runCall) return false;
+    let num = parseInt(this.runCall.name.charAt(1));
+    return num < 5;
+  }
+
+  isStrongsideRun(){
+    if(!this.runCall) return false;
+    let even = parseInt(this.runCall.name) %2 == 0;
+    return (even && this.formation.strongSide.name == 'Right') || (!even &&  this.formation.strongSide.name == 'Left');
+  }
+
   getRunPhase(){
     switch(this.phase){
       case 5 : return this.runCallOptions[0];

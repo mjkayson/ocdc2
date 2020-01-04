@@ -57,7 +57,7 @@ export class PlaySegment {
 
 }
 
-export class PS_Snap extends PlaySegment {
+export class SnapSegment extends PlaySegment {
 
   name = 'Snap';
 
