@@ -10,19 +10,25 @@ export class PlayResult {
   score_home: number = 0;
   score_away: number = 0;
   data;
-  start_game_state;
+  game_state_start;
   end_game_state;
   segments:any = [];
+  play;
 
-  constructor(){
+  constructor(play){
     
    this.commentary = [];
    this.data = {};
+   this.play = play;
+   this.game_state_start = play.game_state_start;
+   this.play.segments.forEach(seg=>{
+     this.addResultSegment(seg);
+   });
 
   }
 
   getStartGameState(){
-    return this.start_game_state;
+    return this.game_state_start;
   }
 
   addResultSegment(segment){

@@ -27,6 +27,8 @@ export class PlaySegment {
   rand:number; // base rng, 1-100
   offAdj:number = 0;
   defAdj:number = 0;
+  offEndsOn:number = 0;
+  defEndsOn:number = 0;
   res:number = 0;
 
   lastSegment;

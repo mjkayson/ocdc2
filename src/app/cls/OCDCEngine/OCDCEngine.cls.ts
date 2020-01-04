@@ -64,12 +64,22 @@ export class OCDCEngine {
       max: Config.runData[name].max,
       endsOn: Config.runData[name].endsOn
     };
+    let offMods = {
+      min: 1,
+      max: 1,
+      endsOn: 0
+    };
+    let defMods = {
+      min: 1,
+      max: 1,
+      endsOn: 0
+    };
     // offensive adjustments for location & blocking
     if(!noAdj){
       //console.log(call.blockingSchemes);
-      vars.min *= off.runCall[name];
-      vars.max *= off.runCall[name];
-      vars.endsOn -= off.blockingSchemes[0][name];
+      offMods.min *= off.runCall[name];
+      offMods.max *= off.runCall[name];
+      offMods.endsOn -= off.blockingSchemes[0][name];
     }
     // defensive adjustments for formation, line calls & assignments - not in the transfer phase
     if(!noAdj && segmentNum > 1){
@@ -96,12 +106,16 @@ export class OCDCEngine {
 
       }
       //console.log(mod, endsOnMod);
-      vars.min *= mod;
-      vars.max *= mod;
-      vars.endsOn += endsOnMod;
+      defMods.min *= mod;
+      defMods.max *= mod;
+      defMods.endsOn += endsOnMod;
     }
     //console.log(vars);
-    return vars;
+    return {
+      vars:vars,
+      offMods:offMods,
+      defMods:defMods
+    };
   }
 
   static getPassSegment(play, noAdj?){

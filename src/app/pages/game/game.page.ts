@@ -29,6 +29,8 @@ export class GamePage implements OnInit {
   simCount:number = 0;
   results:any = [];
 
+  showDevTools:boolean = false;
+
   constructor(public toastController: ToastController,
               public modalController: ModalController,
               public game: GameService) {
@@ -75,14 +77,37 @@ export class GamePage implements OnInit {
       //header: 'Toast header',
       //message: 'Call Play',
       position: 'bottom',
-      buttons: [
-        {
+      buttons: [{
           side: 'start',
           //icon: 'star',
           text: 'Call Play',
           handler: () => {
             this.ready();
             this.showPlaycallModal();
+          }
+        },{
+          side: 'end',
+          text: 'Randomise',
+          handler: () => {
+            this.ready();
+            this.presnap = true;
+            this.playcall_off = AI.getRandomOffensivePlaycall();
+            this.playcall_def = AI.getRandomDefensivePlaycall();
+            let play = new Play(this.game.getCurrentGameState());
+            play.setPlaycall(this.playcall_off, this.playcall_def);
+            this.game.addPlay(play);   
+          }
+        },{
+          side: 'end',
+          text: 'Fixed',
+          handler: () => {
+            this.ready();
+            this.presnap = true;
+            this.playcall_off = AI.getSpecificOffensivePlaycall();
+            this.playcall_def = AI.getSpecificDefensivePlaycall();
+            let play = new Play(this.game.getCurrentGameState());
+            play.setPlaycall(this.playcall_off, this.playcall_def);
+            this.game.addPlay(play);   
           }
         }
       ]
@@ -96,11 +121,11 @@ export class GamePage implements OnInit {
     this.devTools.newSeries();
 
     for(var i=0;i<10000;i++){
-      //this.playcall_off = AI.getRandomOffensivePlaycall();
-      //this.playcall_def = AI.getRandomDefensivePlaycall();
+      this.playcall_off = AI.getRandomOffensivePlaycall();
+      this.playcall_def = AI.getRandomDefensivePlaycall();
 
-      this.playcall_off = AI.getSpecificOffensivePlaycall();
-      this.playcall_def = AI.getSpecificDefensivePlaycall();
+      //this.playcall_off = AI.getSpecificOffensivePlaycall();
+      //this.playcall_def = AI.getSpecificDefensivePlaycall();
       
       let play = new Play(this.game.getCurrentGameState());
       play.setPlaycall(this.playcall_off, this.playcall_def);
@@ -111,10 +136,7 @@ export class GamePage implements OnInit {
       this.game.resolveCurrentPlay();
       let res = this.game.getLastPlay();
       let segment = res.getLastSegment();
-      let offset = (Siri.getRandomNumber(100,500)/1000);
-      if(Siri.getRandomNumber(1,2) == 2) offset *= -1;
-      let y = res.segments.length + offset;
-      this.devTools.update([segment.ballY, y]);
+      this.devTools.update(segment.ballY);
       this.simCount++;
 
     }
@@ -124,11 +146,9 @@ export class GamePage implements OnInit {
 
   snap(){
     this.presnap = false;
-    this.game.resolveCurrentPlay();
-    let play = this.game.getLastPlay();
-    let segment = play.getLastSegment();
-    //console.log([segment.ballY, play.segments.length]);
-    this.devTools.update([segment.ballY, play.segments.length]);
+    OCDCEngine.resolve(this.game);
+    this.game.resolveCurrentPlay();  
+    //console.log(this.game.getLastPlay());  
     this.showPlaycallPromptToast();
   }
 

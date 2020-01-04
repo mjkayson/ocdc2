@@ -18,31 +18,13 @@ export class Play {
 
 
   constructor(gs:GameState){
-    this.playResult = new PlayResult();
-    this.game_state_start = gs;    
-    
+    //this.playResult = new PlayResult();
+    this.game_state_start = gs;        
   }
 
   setPlaycall(off:OffensivePlaycall, def:DefensivePlaycall){
     this.playcall_off = off;
     this.playcall_def = def;
-    /*
-    if(off == 'short'){
-      this.segments = [new PlaySegment_Dropback(def), new PlaySegment_ShortPass(def)];
-    } else if(off == 'long'){
-      this.segments = [new PlaySegment_Dropback(def), new PlaySegment_LongPass(def)];
-    } else if(off == 'punt'){
-      this.segments = [new PlaySegment_Punt(def)];
-    } else if(off == 'pat'){
-      this.segments = [new PlaySegment_PAT(def)];
-    } else if(off == 'fg'){
-      this.segments = [new PlaySegment_FieldGoal(def)];
-    } else if(off == 'ko'){
-      this.segments = [new PlaySegment_Kickoff(def)];
-    } else {
-      this.segments = [new PlaySegment_Handoff(def), new PlaySegment_Run(def)];
-    }
-    */
   }
 
   getPlaycall(side){
@@ -62,8 +44,8 @@ export class Play {
   }
 
   getPlayResult(){
-    return this.segments;
-    //return this.playResult;
+    //return false; //this.segments;
+    return this.finished? new PlayResult(this) : null; //this.playResult;
   }
 
   getStartGameState(){

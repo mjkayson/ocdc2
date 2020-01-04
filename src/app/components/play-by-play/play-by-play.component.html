@@ -1,43 +1,55 @@
 <div #playDetail id="playDetail">
     <ion-grid *ngIf="game.getLastPlay()">
         <ion-row>
-            <ion-col>
+            <ion-col size="3">
                 Segment
             </ion-col>
-            <ion-col>
+            <ion-col size="2">
                 Rand
             </ion-col>
-            <ion-col>
-                Off Adj
+            <ion-col size="1">
+                O
             </ion-col>
-            <ion-col>
-                Def Adj
+            <ion-col size="1">
+                D
             </ion-col>
-            <ion-col>
-                Gain
+            <ion-col size="1">
+                OE
             </ion-col>
-            <ion-col>
+            <ion-col size="1">
+                DE
+            </ion-col>
+            <ion-col size="1">
+                EO
+            </ion-col>
+            <ion-col size="2">
                 BallY
             </ion-col>
         </ion-row>
 
         <ion-row *ngFor="let segment of game.getLastPlay().segments">
-            <ion-col>
+            <ion-col size="3">
                 {{ segment.name }} 
             </ion-col>
-            <ion-col>
+            <ion-col size="2">
                 {{ segment.rand }} 
             </ion-col>
-            <ion-col>
+            <ion-col size="1">
                 {{ segment.offAdj }} 
             </ion-col>
-            <ion-col>
+            <ion-col size="1">
                 {{ segment.defAdj }} 
             </ion-col>
-            <ion-col>
-                {{ segment.gain }} 
+            <ion-col size="1">
+                {{ segment.offEndsOn }} 
             </ion-col>
-            <ion-col>
+            <ion-col size="1">
+                {{ segment.defEndsOn }} 
+            </ion-col>
+            <ion-col size="1">
+                {{ segment.endsOn }}
+            </ion-col>
+            <ion-col size="2">
                 {{ segment.ballY }}
             </ion-col>
         </ion-row>
@@ -46,7 +58,7 @@
 </div>
 <div #playByPlay id="playByPlay">
     <ion-grid class="ion-no-padding" *ngIf="game.getLastPlayResult()">
-       <!--
+       
             <div *ngFor="let result of game.getCurrentDrivePlayResults()">
           
           <div class="ion-no-padding" *ngIf="result.getStartGameState().play_type == 'REG'; else min">
@@ -88,6 +100,6 @@
           </ng-template>
       
         </div>
-          -->
+        
     </ion-grid>
 </div>

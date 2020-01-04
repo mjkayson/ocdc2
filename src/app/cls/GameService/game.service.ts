@@ -88,14 +88,14 @@ export class GameService {
 
     let play = this.getCurrentPlay();
     // TODO: this does not belong here
-    let res = play.getPlayResult();
+    //let res = play.getPlayResult();
     //console.log(res);
     
 
     let gs = new GameState(this.getCurrentPlay().getStartGameState());
-    gs.clock -= res.time;
-    /*
+    //gs.clock -= res.time;
     
+    /*
     switch(gs.play_type){
       case 'CNV': gs = this.resolveTwoPointTry(res, gs); break;
       case 'PAT': gs = this.resolvePAT(res, gs); break;
@@ -103,11 +103,12 @@ export class GameService {
       case 'FG':  gs = this.resolveFieldGoalAttempt(res, gs); break;
       default:    gs = this.resolveRegularPlay(res, gs);
     }
-
-    //console.log('gs', gs);
     */
 
-    gs = this.checkClock(res, gs);
+    //console.log('gs', gs);
+    
+
+    //gs = this.checkClock(res, gs);
     play.setEndGameState(gs);
 
   }

@@ -126,24 +126,10 @@ export class DevToolsComponent implements AfterContentInit {
     } 
   }
 
-  update(dataPoint){   
-    
-    let gain = Math.round(dataPoint[0]); 
+  update(dataPoint){       
+    let gain = Math.round(dataPoint); 
     this.addResult(gain);
-    //this.setChartData();
-    //this.scatter.series[0].addPoint(dataPoint[0], true, false, false);
   }
 
-  /*
-  update(dataPoint){    
-    this.addResult(dataPoint[0]);
-    let point = {
-      color: '#'+Math.floor(Math.random()*16777215).toString(16),
-      x: dataPoint[0],
-      y: dataPoint[1]
-    };
-    this.scatter.series[0].addPoint(point, true, false, false);
-  }
-  */
 
 }

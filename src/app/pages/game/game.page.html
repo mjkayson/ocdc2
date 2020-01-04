@@ -5,17 +5,17 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!--<game-state [game]="game" type="max"></game-state>-->
-  <!--<field-view></field-view>-->
-  <dev-tools #devTools></dev-tools>
-  <!--
+  <game-state [game]="game" type="max"></game-state>
+  <field-view></field-view>
+  <dev-tools *ngIf="showDevTools" #devTools></dev-tools>
+  
   <div *ngIf="playcall_off" class="playDisplay ion-text-center">{{ playcall_off.getFullText() }} vs. {{ playcall_def.getFullText() }}</div>
   <play-by-play [game]="game"></play-by-play>
-  <ion-button expand="block" *ngIf="presnap" (click)="snap()">Snap</ion-button>
-  -->
-  <ion-button expand="block" size="small" *ngIf="!simulating" (click)="simulate(true)">Simulate</ion-button>
-  <ion-button expand="block" size="small" *ngIf="!simulating" (click)="simulate(false)">Simulate (no Adj)</ion-button>
-  <div class="playDisplay">Simulations: {{ simCount }}</div>
+  <ion-button expand="block" size="small" *ngIf="presnap" (click)="snap()">Snap</ion-button>
+  
+  <ion-button *ngIf="showDevTools" expand="block" size="small" (click)="simulate(true)">Simulate</ion-button>
+  <ion-button *ngIf="showDevTools" expand="block" size="small" (click)="simulate(false)">Simulate (no Adj)</ion-button>
+  <div *ngIf="showDevTools" class="playDisplay">Simulations: {{ simCount }}</div>
 
 
 </ion-content>
