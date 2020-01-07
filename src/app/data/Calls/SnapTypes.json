@@ -1,0 +1,10 @@
+[
+  {
+    "name":"Reg",
+    "alignment": { "x": 0, "y": 6}
+  },
+  {
+    "name":"Gun",
+    "alignment": { "x": 0, "y": 19}
+  }
+]

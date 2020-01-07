@@ -1,5 +1,6 @@
 import { Siri } from '../Siri/Siri.cls';
-import { Playcall, OffensivePlaycall, DefensivePlaycall } from '../Playcalls/Playcall.cls';
+import { OffensivePlaycall } from '../Playcalls/OffensivePlaycall.cls';
+import { DefensivePlaycall } from '../Playcalls/DefensivePlaycall.cls';
 import { GameService } from '../GameService/game.service';
 import { PlayResult } from '../PlayResult/PlayResult.cls';
 import { Play } from '../Play/Play.cls';

@@ -18,6 +18,7 @@ import { OCDCEngine } from '../../cls/OCDCEngine/OCDCEngine.cls';
 export class GamePage implements OnInit {  
 
   @ViewChild('devTools', {static: false}) devTools:any;
+  @ViewChild('fieldView', {static: false}) fieldView:any;
 
   presnap:boolean = false;
   ai_playcall;
@@ -89,30 +90,34 @@ export class GamePage implements OnInit {
           side: 'end',
           text: 'Randomise',
           handler: () => {
-            this.ready();
-            this.presnap = true;
-            this.playcall_off = AI.getRandomOffensivePlaycall();
-            this.playcall_def = AI.getRandomDefensivePlaycall();
-            let play = new Play(this.game.getCurrentGameState());
-            play.setPlaycall(this.playcall_off, this.playcall_def);
-            this.game.addPlay(play);   
+            this.CallAIPlays(true);  
           }
         },{
           side: 'end',
           text: 'Fixed',
           handler: () => {
-            this.ready();
-            this.presnap = true;
-            this.playcall_off = AI.getSpecificOffensivePlaycall();
-            this.playcall_def = AI.getSpecificDefensivePlaycall();
-            let play = new Play(this.game.getCurrentGameState());
-            play.setPlaycall(this.playcall_off, this.playcall_def);
-            this.game.addPlay(play);   
+            this.CallAIPlays(false);             
           }
         }
       ]
     });
     toast.present();
+  }
+
+  CallAIPlays(random?){
+    this.ready();
+    this.presnap = true;
+    if(random){
+      this.playcall_off = AI.getRandomOffensivePlaycall();
+      this.playcall_def = AI.getRandomDefensivePlaycall();
+    } else {
+      this.playcall_off = AI.getSpecificOffensivePlaycall();
+      this.playcall_def = AI.getSpecificDefensivePlaycall();
+    }
+    let play = new Play(this.game.getCurrentGameState());
+    play.setPlaycall(this.playcall_off, this.playcall_def);
+    this.game.addPlay(play);
+    this.fieldView.setPresnap(play);
   }
 
   simulate(adj){
@@ -130,6 +135,7 @@ export class GamePage implements OnInit {
       let play = new Play(this.game.getCurrentGameState());
       play.setPlaycall(this.playcall_off, this.playcall_def);
       this.game.addPlay(play);   
+      //this.fieldView.setPresnap(play);
       
       OCDCEngine.resolve(this.game, !adj);
 

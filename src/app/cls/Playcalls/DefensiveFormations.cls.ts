@@ -6,6 +6,7 @@ import * as Player from '../Player/Player.cls';
 export class DefensiveFormtion_62 extends DefensiveFormation {
     public name:string = '6-3'; 
     downLinemen = 6;
+
     
     public blitzers = [
         new Player.MikeLinebacker(),
@@ -15,6 +16,8 @@ export class DefensiveFormtion_62 extends DefensiveFormation {
         new Player.StrongSafety()
     ];
 }
+
+
 
 
 export class DefensiveFormtion_34 extends DefensiveFormation {
@@ -36,6 +39,13 @@ export class DefensiveFormtion_34 extends DefensiveFormation {
 export class DefensiveFormtion_43 extends DefensiveFormation {
     public name:string = '4-3'; 
     downLinemen = 4;
+    
+    alignment = [
+      new Player.DLine({ a: 3}),
+      new Player.DLine({ a: 2, i: true, weak: true }),
+      new Player.DLine({ a: 5, weak: true }),
+      new Player.DLine({ a: 7 })        
+    ]
     
     public blitzers = [
         new Player.MikeLinebacker(),

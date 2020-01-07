@@ -1,0 +1,31 @@
+[
+  {
+    "name":"4 Down Base",
+    "type": "line",
+    "alignment": [
+      { "technique": 3 },
+      { "technique": 7 },
+      { "technique": 2, "inside": true, "weak": true },
+      { "technique": 5, "weak": true }
+    ]
+  },
+  {
+    "name":"Box 3 Base",
+    "type": "box",
+    "alignment": [
+      { "gap": "A", "depth": 4 },
+      { "gap": "C", "depth": 3 },
+      { "gap": "D", "weak": true, "depth": 2 }
+    ]
+  },
+  {
+    "name":"Mirror Base", 
+    "type": "secondary",
+    "alignment": [
+      { "type": "mirror",   "priority": "outside", "depth": 6 },
+      { "type": "mirror",   "priority": "outside", "depth": 6 },
+      { "type": "mirror",   "priority": "inside",  "depth": 5, "shade": "outside" },
+      { "type": "position", "x": 3, "depth": 12 }
+    ]
+  }
+]

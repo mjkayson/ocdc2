@@ -6,10 +6,12 @@
 
 <ion-content class="ion-padding">
   <game-state [game]="game" type="max"></game-state>
-  <field-view></field-view>
+  <field-view #fieldView></field-view>
   <dev-tools *ngIf="showDevTools" #devTools></dev-tools>
   
-  <div *ngIf="playcall_off" class="playDisplay ion-text-center">{{ playcall_off.getFullText() }} vs. {{ playcall_def.getFullText() }}</div>
+  <div *ngIf="playcall_off" class="playDisplay ion-text-center">
+    <strong>{{ playcall_off.getFullText() }}</strong> vs. <strong>{{ playcall_def.getFullText() }}</strong>
+  </div>
   <play-by-play [game]="game"></play-by-play>
   <ion-button expand="block" size="small" *ngIf="presnap" (click)="snap()">Snap</ion-button>
   

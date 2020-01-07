@@ -1,5 +1,6 @@
 import {StrongSide_Left, StrongSide_Right } from '../Playcalls/StrongSides.cls';
 import { Player } from '../Player/Player.cls';
+import * as Players from '../Player/Player.cls';
 
 export class Formation {
 
@@ -59,6 +60,13 @@ export class OffensiveFormation extends Formation {
   strongSide:any;
   motion;
   eligibleReceivers:Player[] = [];
+  line = [    
+    new Players.LeftTackle(),
+    new Players.LeftGuard(),
+    new Players.Center(),
+    new Players.RightGuard(),
+    new Players.RightTackle()
+  ];
 
   text(){
     let str = '';

@@ -24,11 +24,11 @@ export class GameStateComponent implements AfterContentInit {
 
   ngAfterContentInit() {
     this.gameState = this.game.getCurrentGameState();
-    console.log(this.gameState);
+    //console.log(this.gameState);
     let ytg = this.gameState.ytg;
-    console.log(ytg);
+    //console.log(ytg);
     this.yard_line = ytg > 50? (100 - ytg) : ytg < 50? ytg : 50;
-    console.log(this.yard_line);
+    //console.log(this.yard_line);
   }
 
 }

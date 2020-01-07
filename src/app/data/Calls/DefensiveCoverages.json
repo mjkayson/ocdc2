@@ -1,0 +1,42 @@
+[
+  {
+    "name":"Cover 0",
+    "assignments":[
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" }
+    ]
+  },{
+    "name":"Cover 1",
+    "assignments":[
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" }
+    ]
+  },{
+    "name":"Cover 2",
+    "assignments":[
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" }
+    ]
+  },{
+    "name":"Cover 3",
+    "assignments":[
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" }
+    ]
+  },{
+    "name":"Cover 1",
+    "assignments":[
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" }
+    ]
+  }
+]

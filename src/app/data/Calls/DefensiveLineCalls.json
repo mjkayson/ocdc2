@@ -1,0 +1,74 @@
+[
+  {
+    "name":"Flex",
+    "assignments":[
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" }
+    ]
+  },{
+    "name":"Gap",
+    "assignments":[
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" }
+    ]
+  },
+  {
+    "name":"Rush",
+    "assignments":[
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" }
+    ]
+  },
+  {
+    "name":"Flex",
+    "assignments":[
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" }
+    ]
+  },
+  {
+    "name":"Gap",
+    "assignments":[
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" }
+    ]
+  },
+  {
+    "name":"Rush",
+    "assignments":[
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" }
+    ]
+  },
+  {
+    "name":"Gap",
+    "assignments":[
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" }
+    ]
+  },
+  {
+    "name":"Pinch",
+    "assignments":[
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" },
+      { "name": "asd" }
+    ]
+  }
+]

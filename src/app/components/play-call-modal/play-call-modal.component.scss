@@ -1,12 +1,22 @@
 ion-col > div {
   background: #f8f8f8;
-  margin: 2px;
+  margin: 1px;
   border: #eee;
-  padding: 5px;
-  min-height: 60px;
+  padding: 7px 2px;
+  min-height: 26px;
   text-align: center;
+  font-size: 10px;
 }
 
 .selected > div {
   background: #dedede;
+}
+
+.not-selected > div {
+  opacity: 0.5;
+}
+
+.row-header {
+  padding: 6px 2px 0px 6px;
+  font-size:9px;
 }

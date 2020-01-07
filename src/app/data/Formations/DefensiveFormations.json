@@ -1,0 +1,27 @@
+[
+  {
+    "name":"Base",
+    "personnel": "34",
+    "alignments": [2,1,1]
+  },{
+    "name":"Base",
+    "personnel": "43",
+    "alignments": [0,0,1]
+  },{
+    "name":"Over",
+    "personnel": "43",
+    "alignments": [2,2,1]
+  },{
+    "name":"Base",
+    "personnel": "42",
+    "alignments": [2,3,2]
+  },{
+    "name":"Base",
+    "personnel": "33",
+    "alignments": [2,3,2]
+  },{
+    "name":"Base",
+    "personnel": "62",
+    "alignments": [2,3,2]
+  }
+]

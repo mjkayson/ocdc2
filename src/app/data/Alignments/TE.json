@@ -1,0 +1,31 @@
+[
+  {
+    "name":"Pro",
+    "alignments": [
+      { "x": 6, "y": 8, "pos": "FB" },
+      { "x": -6, "y": 8, "pos": "HB" }
+    ]
+  },{
+    "name":"I",
+    "alignments": [
+      { "x": 0, "y": 7, "pos": "FB" },
+      { "x": 0, "y": 12, "pos": "TB" }
+    ]
+  },{
+    "name":"Wing",
+    "alignments": [
+      { "x": -20, "y": 5, "pos": "WB" },
+      { "x": 0, "y": 12, "pos": "TB" }
+    ]
+  },{
+    "name":"Single",
+    "alignments": [
+      { "x": 0, "y": 12, "pos": "TB" }
+    ]
+  },{
+    "name":"Offset",
+    "alignments": [
+      { "x": 7, "y": 10, "pos": "HB" }
+    ]
+  }
+]

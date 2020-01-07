@@ -3,7 +3,8 @@
 import { PlayCall } from '../../int/PlayCall.int';
 import { GameState } from '../GameState/GameState.cls';
 import { PlayResult } from '../PlayResult/PlayResult.cls';
-import { OffensivePlaycall, DefensivePlaycall } from '../Playcalls/Playcall.cls';
+import { OffensivePlaycall } from '../Playcalls/OffensivePlaycall.cls';
+import { DefensivePlaycall } from '../Playcalls/DefensivePlaycall.cls';
 
 export class Play {
   playcall_off: PlayCall;

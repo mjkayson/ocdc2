@@ -1,6 +1,6 @@
 import { Siri } from '../Siri/Siri.cls';
-import { Playcall, OffensivePlaycall, DefensivePlaycall } from '../Playcalls/Playcall.cls';
-import { RouteConfigLoadEnd } from '@angular/router';
+import { OffensivePlaycall } from '../Playcalls/OffensivePlaycall.cls';
+import { DefensivePlaycall } from '../Playcalls/DefensivePlaycall.cls';
 
 export class AI {
 
@@ -15,15 +15,15 @@ export class AI {
     call.personnel = call.personnelOptions[0].opts[4]; // 11
 
     let formation = call.formationOptions[0].opts[1]; // Single
-    formation.setQbDepth(call.qbDepthOptions[0].opts[0]); // -
-    formation.setStrongSide(call.strongSideOptions[0].opts[0]); // Right
+    //formation.setQbDepth(call.qbDepthOptions[0].opts[0]); // -
+    //formation.setStrongSide(call.strongSideOptions[0].opts[0]); // Right
     call.formation = formation;
 
-    let playType = call.playTypeOptions[0].opts[0]; // Run
-    call.playType = playType;
+    //let playType = call.playTypeOptions[0].opts[0]; // Run
+    //call.playType = playType;
 
-    call.runCall = call.runCallOptions[0].opts[8]; // 28
-    call.blockingSchemes.push(call.runBlockingSchemeOptions[0].opts[2]); // Lead
+    //call.runCall = call.runCallOptions[0].opts[8]; // 28
+    //call.blockingSchemes.push(call.runBlockingSchemeOptions[0].opts[2]); // Lead
 
     return call;
   }
@@ -31,11 +31,10 @@ export class AI {
   static getSpecificDefensivePlaycall(){
     let call = new DefensivePlaycall();
     call.personnel = call.personnelOptions[0].opts[0]; // 43
-    let formation = call.formationOptions[0].opts[2]; // 4-3
-    formation.setShift(call.shiftOptions[0].opts[2]); // Under
+    let formation = call.formationOptions[0].opts[2]; // 4-30
     call.formation = formation;
-    call.stunt = call.stuntOptions[0].opts[2]; // Weak
-    call.coverage = call.coverageOptions[0].opts[1]; // Cover 2
+    //call.line = call.stuntOptions[0].opts[2]; // Weak
+    //call.coverage = call.coverageOptions[0].opts[1]; // Cover 2
     // no blitzes yet
 
     return call;
@@ -45,15 +44,15 @@ export class AI {
     let call = new DefensivePlaycall();
     call.personnel = AI.getRandomOption(call.personnelOptions[0].opts);    
     let formation = AI.getRandomOption(call.formationOptions[0].opts);
-    formation.setShift(AI.getRandomOption(call.shiftOptions[0].opts));
+    //formation.setShift(AI.getRandomOption(call.shiftOptions[0].opts));
     call.formation = formation;
-    call.stunt = AI.getRandomOption(call.stuntOptions[0].opts);
-    call.coverage = AI.getRandomOption(call.coverageOptions[0].opts);
+    //call.stunt = AI.getRandomOption(call.stuntOptions[0].opts);
+    //call.coverage = AI.getRandomOption(call.coverageOptions[0].opts);
     if(Siri.getRandomNumber(1, 3) == 3){
       let player = AI.getRandomOption(call.formation.getUnassignedBlitzers());
-      let blitz = AI.getRandomOption(call.blitzOptions[0].opts);
-      player.setAssignment(blitz);
-      call.blitzes.push(player);
+      //let blitz = AI.getRandomOption(call.blitzOptions[0].opts);
+      //player.setAssignment(blitz);
+      //call.blitzes.push(player);
     }
     return call;
   }
@@ -63,13 +62,14 @@ export class AI {
     call.personnel = AI.getRandomOption(call.personnelOptions[0].opts);
     //console.log('AI personnel', call.personnel);
     let formation = AI.getRandomOption(call.formationOptions[0].opts);
-    formation.setQbDepth(AI.getRandomOption(call.qbDepthOptions[0].opts));
-    formation.setStrongSide(AI.getRandomOption(call.strongSideOptions[0].opts));
+    //formation.setQbDepth(AI.getRandomOption(call.qbDepthOptions[0].opts));
+    //formation.setStrongSide(AI.getRandomOption(call.strongSideOptions[0].opts));
     //console.log('AI formation', formation);
     call.formation = formation;
     //let playType = AI.getRandomOption(call.playTypeOptions[0].opts);
-    let playType = call.playTypeOptions[0].opts[0];
+    //let playType = call.playTypeOptions[0].opts[0];
     //console.log('AI playType', playType);
+    /*
     call.playType = playType;
     if(playType.name == 'Run'){
       call = AI.getRandomRun(call);
@@ -80,6 +80,7 @@ export class AI {
       call = AI.getRandomPass(call);
     }
     //console.log('AI Call', call);
+    */
     return call;
   }
 

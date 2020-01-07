@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name":"Mirror", 
+    "alignment": [
+      { "type": "mirror",   "priority": "outside", "depth": 6 },
+      { "type": "mirror",   "priority": "outside", "depth": 6 },
+      { "type": "mirror",   "priority": "inside",  "depth": 5, "shade": "outside" },
+      { "type": "position", "x": 3, "depth": 12 }
+    ]
+  },
+  {
+    "id": 2,
+    "name":"Mirror Nickel", 
+    "alignment": [
+      { "type": "mirror",   "priority": "outside", "depth": 6 },
+      { "type": "mirror",   "priority": "outside", "depth": 6 },
+      { "type": "mirror",   "priority": "outside", "depth": 6 },
+      { "type": "mirror",   "priority": "inside",  "depth": 5, "shade": "outside" },
+      { "type": "position", "x": 3, "depth": 12 }
+    ]
+  }
+]

@@ -22,7 +22,7 @@ export class Single extends OffensiveFormation {
     new Player.Flanker(),
     new Player.Slot(),
     new Player.TightEnd(),
-    new Player.Halfback()
+    new Player.Tailback()
   ];
 }
 

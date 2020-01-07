@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "name":"4 Down Base",
+    "alignments": [
+      { "technique": 2 },
+      { "technique": 7 },
+      { "technique": 2, "inside": true, "weak": true },
+      { "technique": 5, "weak": true }
+    ]
+  },
+  {
+    "id": 2,
+    "name":"4 Down Over",
+    "alignments": [
+      { "technique": 3 },
+      { "technique": 7 },
+      { "technique": 0, "inside": true, "weak": true },
+      { "technique": 3, "inside": true, "weak": true }
+    ]
+  },
+  {
+    "id": 3,
+    "name":"3 Down Base",
+    "alignments": [
+      { "technique": 1 },
+      { "technique": 7 },
+      { "technique": 5, "weak": true }
+    ]
+  },
+  {
+    "id": 4,
+    "name":"Goal Base",
+    "alignments": [
+      { "technique": 0 },
+      { "technique": 2, "inside": true },
+      { "technique": 4, "inside": true },
+      { "technique": 7 },
+      { "technique": 2, "weak": true },
+      { "technique": 4, "weak": true }
+    ]
+  }
+]

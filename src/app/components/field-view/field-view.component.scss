@@ -6,8 +6,12 @@
 .field-view {
   border: 1px solid #ccc;
   background: #f8f8f8;
-  height: 100px;
+  height: 300px;
   width: 100%;
+}
+
+.field-view.playcall {
+  height: 150px;
 }
 
 #game {

@@ -9,76 +9,159 @@
   <ion-content fullscreen class="ion-padding">
     <game-state [game]="game" type="min"></game-state>
 
-    <!--
-      <div>Personnel: {{ personnel.name }}</div>
-    <div>Formation: {{ formation.getCall() }}</div>
-    <div>Playcall: {{ playcall.getCall() }}</div>
-    -->
-
-    <ion-toolbar>
-      <ion-buttons slot="secondary">
-        <ion-button>
-          <ion-icon name="arrow-back"></ion-icon>
-          Back
-        </ion-button>
-      </ion-buttons>
-      <ion-buttons slot="primary">
-        <ion-button color="primary" (click)="reset()">
-          <ion-icon name="refresh"></ion-icon>
-          Restart
-        </ion-button>
-      </ion-buttons>
-      <ion-title></ion-title>
-    </ion-toolbar>   
-          
-    <div>
-      {{ playcall.getPhaseName() }}
-    </div>       
-
-    <ion-list>
-        <ion-item *ngIf="playcall.personnel">
-          <ion-label>
-            <h3>Personnel</h3>
-            <h4 >{{ playcall.personnel.name }}</h4>
-          </ion-label>  
-        </ion-item>
-        <ion-item *ngIf="playcall.formation">
-          <ion-label>
-            <h3>Formation</h3>
-            <h4 >{{ playcall.formation.text() }}</h4>
-          </ion-label>  
-        </ion-item>
-        <ion-item *ngIf="playcall.playType">
-          <ion-label class="ion-text-wrap">
-            <h3>Playcall</h3>
-            <h4 >{{ playcall.text() }}</h4>
-          </ion-label>  
-        </ion-item>
-
-    </ion-list>
-      
-      <div *ngIf="playcall.phaseHasPositionOptions()">
-          <ion-grid>
-            <ion-row>
-              <ion-col *ngFor="let pos of playcall.getPhasePositionOptions(); let i = index"
-                       [class.selected]="pos.selected"
-                       [class.complete]="pos.complete"
-                       (click)="playcall.setPhasePositionOption(pos)">
-
-                <div>{{ pos.letter }}</div>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-     </div>
-
-    <ion-grid>
+    <ion-grid class="ion-no-padding">
       <ion-row>
-        <ion-col size="4" *ngFor="let opt of playcall.getPhaseOptions();" (click)="playcall.setPhaseOption(opt)">
+        <ion-col>
+          <div><strong>{{ playcall.getFullText() }}</strong></div>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button size="small" expand="block" [disabled]="!playcall.ready" (click)="call()">Call</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+    <field-view #fieldView [isPlaycall]="1"></field-view>
+    
+    <!-- OFFENSIVE -->
+    <ion-grid *ngIf="!onDefense" class="ion-no-padding">
+        <ion-row><ion-col class="row-header">Package</ion-col></ion-row>
+        <ion-row>
+          <ion-col size="1"
+                   [class.selected]="playcall.personnel == opt"
+                   [class.not-selected]="playcall.personnel && playcall.personnel != opt"
+                   (click)="playcall.setPersonnel(opt)" *ngFor="let opt of playcall.personnelOptions">
+            <div>{{ opt.name }}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row><ion-col class="row-header">RB Alignment</ion-col></ion-row>
+        <ion-row>
+          <ion-col size="3"
+                   [class.selected]="playcall.RBAlignment == opt"
+                   [class.not-selected]="playcall.RBAlignment && playcall.RBAlignment != opt"
+                   (click)="playcall.setRBAlignment(opt)" *ngFor="let opt of playcall.getRBAlignmentOptions()">
+            <div>{{ opt.name }}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row><ion-col class="row-header">WR Alignment</ion-col></ion-row>
+        <ion-row>
+          <ion-col size="3"
+                   [class.selected]="playcall.WRAlignment == opt"
+                   [class.not-selected]="playcall.WRAlignment && playcall.WRAlignment != opt"
+                   (click)="playcall.setWRAlignment(opt)" *ngFor="let opt of playcall.getWRAlignmentOptions()">
+            <div>{{ opt.name }}</div>
+          </ion-col>
+        </ion-row>
+        
+        <ion-row><ion-col size="6" class="row-header">Strong Side</ion-col><ion-col size="6" class="row-header">Snap</ion-col></ion-row>
+        <ion-row>
+          <ion-col size="3"
+                   [class.selected]="playcall.strongSide == opt"
+                   [class.not-selected]="playcall.strongSide && playcall.strongSide != opt"
+                   (click)="playcall.setStrongSide(opt)" *ngFor="let opt of playcall.strongSides">
+            <div>{{ opt }}</div>
+          </ion-col>
+          <ion-col size="3"
+                   [class.selected]="playcall.snapType == opt"
+                   [class.not-selected]="playcall.snapType && playcall.snapType != opt"
+                   (click)="playcall.setSnapType(opt)" *ngFor="let opt of playcall.snapTypes">
+            <div>{{ opt.name }}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2"
+                   [class.selected]="playcall.playType == opt"
+                   [class.not-selected]="playcall.playType && playcall.playType != opt"
+                   (click)="playcall.setPlayType(opt)" *ngFor="let opt of playcall.playTypes">
+            <div>{{ opt }}</div>
+          </ion-col>
+        </ion-row>
+
+        <!-- RUNS -->
+        <ion-row *ngIf="playcall.playType == 'Run'"><ion-col class="row-header">Call</ion-col></ion-row>
+        <ion-row *ngIf="playcall.playType == 'Run'">
+          <ion-col size="1"
+                   [class.selected]="playcall.runCall == opt"
+                   [class.not-selected]="playcall.runCall && playcall.runCall != opt"
+                   (click)="playcall.setRunCall(opt)" *ngFor="let opt of playcall.runCalls">
+            <div>{{ opt.name }}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="playcall.playType == 'Run'"><ion-col class="row-header">Blocking Scheme</ion-col></ion-row>
+        <ion-row *ngIf="playcall.playType == 'Run'">
+          <ion-col size="2"
+                   [class.selected]="playcall.runBlockingScheme == opt"
+                   [class.not-selected]="playcall.runBlockingScheme && playcall.runBlockingScheme != opt"
+                   (click)="playcall.setRunBlockingScheme(opt)" *ngFor="let opt of playcall.runBlockingSchemes">
+            <div>{{ opt.name }}</div>
+          </ion-col>
+        </ion-row>
+
+        <!-- PASSES -->
+        
+      </ion-grid>  
+
+
+    
+    <!-- DEFENSIVE -->
+    <ion-grid *ngIf="onDefense" class="ion-no-padding">
+      <ion-row><ion-col class="row-header">Package</ion-col></ion-row>
+      <ion-row>
+        <ion-col size="3"
+                 [class.selected]="playcall.personnel == opt"
+                 [class.not-selected]="playcall.personnel && playcall.personnel != opt"
+                 (click)="playcall.setPersonnel(opt)" *ngFor="let opt of playcall.personnelOptions">
+          <div>{{ opt.name }}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row><ion-col class="row-header">Formation</ion-col></ion-row>
+      <ion-row>        
+        <ion-col size="3"
+                 [class.selected]="playcall.formation == opt"
+                 [class.not-selected]="playcall.formation && playcall.formation != opt"
+                 (click)="playcall.setFormation(opt)"  *ngFor="let opt of playcall.getFormationOptions()">
+          <div>{{ opt.name }}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row><ion-col class="row-header">Line Call</ion-col></ion-row>
+      <ion-row>
+        <ion-col size="3"
+                 [class.selected]="playcall.lineCall == opt"
+                 [class.not-selected]="playcall.lineCall && playcall.lineCall != opt"
+                 (click)="playcall.setLineCall(opt)"  *ngFor="let opt of playcall.getLineOptions()">
+          <div>{{ opt.name }}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row><ion-col class="row-header">Coverage</ion-col></ion-row>
+      <ion-row>
+        <ion-col size="3"
+                 [class.selected]="playcall.coverage == opt"
+                 [class.not-selected]="playcall.coverage && playcall.coverage != opt"
+                 (click)="playcall.setCoverage(opt)"  *ngFor="let opt of playcall.getCoverageOptions()">
+          <div>{{ opt.name }}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row><ion-col class="row-header">Secondary Depth</ion-col></ion-row>
+      <ion-row>
+        <ion-col size="3"
+                 [class.selected]="playcall.depth == opt"
+                 [class.not-selected]="playcall.depth && playcall.depth != opt"
+                 (click)="playcall.setDepth(opt)"  *ngFor="let opt of playcall.getDepthOptions()">
+          <div>{{ opt.name }}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row><ion-col class="row-header">Pressure Package</ion-col></ion-row>
+      <ion-row>
+        <ion-col size="3"
+                 [class.selected]="playcall.blitz == opt"
+                 [class.not-selected]="playcall.blitz && playcall.blitz != opt"
+                 (click)="playcall.setBlitz(opt)"  *ngFor="let opt of playcall.getBlitzOptions()">
           <div>{{ opt.name }}</div>
         </ion-col>
       </ion-row>
     </ion-grid>  
+
     
-    <ion-button *ngIf="playcall.ready" (click)="call()">Call</ion-button>
+    
 
   </ion-content>

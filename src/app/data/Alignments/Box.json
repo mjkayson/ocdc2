@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name":"Box 3 Base",
+    "alignment": [
+      { "gap": "A", "depth": 4 },
+      { "gap": "C", "depth": 3 },
+      { "gap": "D", "weak": true, "depth": 2 }
+    ]
+  },{
+    "id": 2,
+    "name":"Box 4 Base",
+    "alignment": [
+      { "gap": "A", "depth": 4 },
+      { "gap": "D", "depth": 2 },
+      { "gap": "A", "weak": true, "depth": 4 },
+      { "gap": "D", "weak": true, "depth": 2 }
+    ]
+  },{
+    "id": 3,
+    "name":"Box 2 Base",
+    "alignment": [
+      { "gap": "B", "shade": "outside", "depth": 4 },
+      { "gap": "B", "weak": true, "depth": 3 }
+    ]
+  }
+]
