@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'game',
     loadChildren: () => import('./pages/game/game.module').then( m => m.GamePageModule)
+  },
+  {
+    path: 'in-play-grid',
+    loadChildren: () => import('./pages/in-play-grid/in-play-grid.module').then( m => m.InPlayGridPageModule)
   }
 ];
 

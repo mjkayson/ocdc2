@@ -1,25 +1,33 @@
 [
   {
-    "id": 1,
-    "name":"Box 3 Base",
-    "alignment": [
+    "name":"Base",
+    "doNotShowInPlaycall": true,
+    "alignments": [
       { "gap": "A", "depth": 4 },
-      { "gap": "C", "depth": 3 },
+      { "gap": "D", "depth": 3 },
       { "gap": "D", "weak": true, "depth": 2 }
     ]
   },{
-    "id": 2,
-    "name":"Box 4 Base",
-    "alignment": [
+    "name":"Base",
+    "doNotShowInPlaycall": true,
+    "alignments": [
       { "gap": "A", "depth": 4 },
       { "gap": "D", "depth": 2 },
       { "gap": "A", "weak": true, "depth": 4 },
       { "gap": "D", "weak": true, "depth": 2 }
     ]
   },{
-    "id": 3,
-    "name":"Box 2 Base",
-    "alignment": [
+    "name":"Split",
+    "alignments": [
+      { "gap": "B", "depth": 5, "shade": "outside" },
+      { "gap": "D", "depth": 3, "shade": "outside" },
+      { "gap": "B", "weak": true, "shade": "outside", "depth": 5 },
+      { "gap": "D", "weak": true, "shade": "outside", "depth": 3 }
+    ]
+  },{
+    "name":"Base",
+    "doNotShowInPlaycall": true,
+    "alignments": [
       { "gap": "B", "shade": "outside", "depth": 4 },
       { "gap": "B", "weak": true, "depth": 3 }
     ]

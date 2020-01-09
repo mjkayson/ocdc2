@@ -1,14 +1,13 @@
 
 
-import { PlayCall } from '../../int/PlayCall.int';
 import { GameState } from '../GameState/GameState.cls';
 import { PlayResult } from '../PlayResult/PlayResult.cls';
 import { OffensivePlaycall } from '../Playcalls/OffensivePlaycall.cls';
 import { DefensivePlaycall } from '../Playcalls/DefensivePlaycall.cls';
 
 export class Play {
-  playcall_off: PlayCall;
-  playcall_def: PlayCall;
+  playcall_off;
+  playcall_def;
   game_state_start: GameState;
   game_state_end: GameState;
   segments:any = [];

@@ -65,7 +65,7 @@ export class SnapSegment extends PlaySegment {
 
   eval(){
     this.time = 1;
-    this.ballY = this.OC.formation.qbDepth.qb_depth;
+    this.ballY = this.OC.snapType.alignment.y;
   }
 
 }

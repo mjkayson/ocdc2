@@ -1,6 +1,7 @@
 [
   {
     "name":"Flex",
+    "doNotShowInPlaycall": true,
     "assignments":[
       { "name": "asd" },
       { "name": "asd" },
@@ -27,6 +28,7 @@
   },
   {
     "name":"Flex",
+    "doNotShowInPlaycall": true,
     "assignments":[
       { "name": "asd" },
       { "name": "asd" },

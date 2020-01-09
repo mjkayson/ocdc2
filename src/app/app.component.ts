@@ -15,6 +15,10 @@ export class AppComponent {
       title: 'Game',
       url: '/game',
       icon: 'disc'
+    },{
+      title: 'Play Grid',
+      url: '/in-play-grid',
+      icon: 'football'
     }
   ];
 

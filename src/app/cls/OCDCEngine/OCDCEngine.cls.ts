@@ -26,7 +26,7 @@ export class OCDCEngine {
 
   static nextSegment(play:Play, noAdj?){
     let OC:any = play.getOffensivePlaycall();
-    switch(OC.playType.name){
+    switch(OC.playType){
       case 'Run': return OCDCEngine.getRunSegment(play, noAdj);
       case 'Pass': return OCDCEngine.getPassSegment(play, noAdj);
     }
@@ -56,6 +56,7 @@ export class OCDCEngine {
       case 7: name = 'box2'; break;
       case 8: name = 'secondary'; break;
       case 9: name = 'break'; break;
+      default: name = 'location1';
     }
     // min and max and ends for this segment
     let vars = {
@@ -78,9 +79,9 @@ export class OCDCEngine {
     // offensive adjustments for location & blocking
     if(!noAdj){
       //console.log(call.blockingSchemes);
-      offMods.min *= off.runCall[name];
-      offMods.max *= off.runCall[name];
-      offMods.endsOn -= off.blockingSchemes[0][name];
+      offMods.min *= off.runCall.name;
+      offMods.max *= off.runCall.name;
+      offMods.endsOn -= off.blockingScheme.name;
     }
     // defensive adjustments for formation, line calls & assignments - not in the transfer phase
     if(!noAdj && segmentNum > 1){

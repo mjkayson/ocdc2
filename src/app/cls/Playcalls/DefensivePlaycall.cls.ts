@@ -7,7 +7,6 @@ import boxAlignments from '../../data/Alignments/Box.json';
 import secondaryAlignments from '../../data/Alignments/Secondary.json';
 
 import lineCalls from '../../data/Calls/DefensiveLineCalls.json';
-import freeCalls from '../../data/Calls/DefensiveFreeCalls.json';
 import coverages from '../../data/Calls/DefensiveCoverages.json';
 import depths from '../../data/Calls/DefensiveDepths.json';
 import blitzes from '../../data/Calls/DefensiveBlitzes.json';
@@ -20,6 +19,8 @@ export class DefensivePlaycall extends Playcall {
   
   coverage;
   depth;
+  lineAlignment;
+  boxAlignment;
   lineCall;
   blitz;
 
@@ -30,10 +31,8 @@ export class DefensivePlaycall extends Playcall {
   secondaryAlignments;
 
   lineCalls;
-  freeCalls;
   coverages;
   depths;
-  formations;
   blitzes;
 
   
@@ -46,33 +45,40 @@ export class DefensivePlaycall extends Playcall {
     this.depths = depths;
 
     this.lineCalls = lineCalls;
-    this.freeCalls = freeCalls;
     this.coverages = coverages;
 
-    this.formations = formations;
     this.blitzes = blitzes;
     
     console.log('personnel', this.personnelOptions);
-    console.log('formations', this.formations);
     console.log('line calls', this.lineCalls);
     console.log('coverages', this.coverages);
     
   }
   
-  getFormationOptions(){
+  getLineAlignmentOptions(){
     if(!this.personnel) return [];
     let opts = [];
-    this.formations.forEach(formation=>{
-      
-      if(formation.personnel == this.personnel.name){
-        opts.push(formation);
+    this.lineAlignments.forEach(opt=>{
+      if(opt.alignments.length == this.personnel.package[0]){
+        opts.push(opt);
+      }
+    });
+    return opts;
+  }
+  
+  getBoxAlignmentOptions(){
+    if(!this.personnel) return [];
+    let opts = [];
+    this.boxAlignments.forEach(opt=>{
+      if(opt.alignments.length == this.personnel.package[1]){
+        opts.push(opt);
       }
     });
     return opts;
   }
 
-  getLineOptions(){
-    if(!this.personnel || !this.formation) return [];
+  getLineCallOptions(){
+    if(!this.personnel) return [];
     let opts = [];
     this.lineCalls.forEach(opt=>{
       // checks there are the same number of assignments as linemen
@@ -84,7 +90,7 @@ export class DefensivePlaycall extends Playcall {
   }
 
   getCoverageOptions(){
-    if(!this.personnel || !this.formation) return [];
+    if(!this.personnel) return [];
     let opts = [];
     this.coverages.forEach(opt=>{
       // checks there are the same number of assignments as players
@@ -107,7 +113,8 @@ export class DefensivePlaycall extends Playcall {
 
   setPersonnel(opt){
     if(this.personnel == opt) return;
-    this.formation = null;
+    this.lineAlignment = null;
+    this.boxAlignment = null;
     this.lineCall = null;
     this.coverage = null;
     this.depth = null;
@@ -116,14 +123,24 @@ export class DefensivePlaycall extends Playcall {
     this.personnel = opt;
   }
 
-  setFormation(opt){
-    if(this.formation == opt) return;
+  setLineAlignment(opt){
+    if(this.lineAlignment == opt) return;
     this.lineCall = null;
     this.coverage = null;
     this.depth = null;
     this.blitz = null;
     this.ready = false;
-    this.formation = opt;
+    this.lineAlignment = opt;
+  }
+
+  setBoxAlignment(opt){
+    if(this.boxAlignment == opt) return;
+    this.lineCall = null;
+    this.coverage = null;
+    this.depth = null;
+    this.blitz = null;
+    this.ready = false;
+    this.boxAlignment = opt;
 
     console.log(this.getLineAlignment());
     console.log(this.getBoxAlignment());
@@ -149,12 +166,11 @@ export class DefensivePlaycall extends Playcall {
   }
 
   getLineAlignment(){
-    if(!this.formation) return [{}];
-    return this.lineAlignments[this.formation.alignments[0]];
+    return this.lineAlignment;
   }
 
   getBoxAlignment(){
-    return this.boxAlignments[this.formation.alignments[1]];
+    return this.boxAlignment;
   }
 
   text(){
@@ -174,7 +190,41 @@ export class DefensivePlaycall extends Playcall {
   }
 
   getFullText(){
-    return 'playcall here'; //this.formation.text() + ' ' + this.text();
+    let str = '';
+    if(this.personnel){
+      str += '('+this.personnel.name+') ';
+    }
+    if(this.lineAlignment){
+      if(!this.lineAlignment.doNotShowInPlaycall){
+        str += this.lineAlignment.name + ' ';
+      }
+    }
+    if(this.boxAlignment){
+      if(!this.boxAlignment.doNotShowInPlaycall){
+        str += this.boxAlignment.name + ' ';
+      }
+    }
+    if(this.lineCall){
+      if(!this.lineCall.doNotShowInPlaycall){
+        str += this.lineCall.name + ' ';
+      }
+    }
+    if(this.coverage){
+      if(!this.coverage.doNotShowInPlaycall){
+        str += this.coverage.name + ' ';
+      }
+    }
+    if(this.depth){
+      if(!this.depth.doNotShowInPlaycall){
+        str += this.depth.name + ' ';
+      }
+    }
+    if(this.blitz){
+      if(!this.blitz.doNotShowInPlaycall){
+        str += this.blitz.name + ' ';
+      }
+    }
+    return str;
   }
 
 

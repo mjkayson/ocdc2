@@ -29,8 +29,7 @@ export class OffensivePlaycall extends Playcall {
   WRAlignment;
   strongSide;
   runCall;
-  runBlockingScheme;
-  passBlockingScheme;
+  blockingScheme;
   progression = [];
 
   snapTypes;
@@ -115,8 +114,7 @@ export class OffensivePlaycall extends Playcall {
     this.playType = null;
     this.snapType = null;
     this.runCall = null;
-    this.runBlockingScheme = null;
-    this.passBlockingScheme = null;
+    this.blockingScheme = null;
     this.progression = [];
     this.ready = false;
     this.personnel = opt;
@@ -148,8 +146,8 @@ export class OffensivePlaycall extends Playcall {
     this.runCall = opt;
   }
 
-  setRunBlockingScheme(opt){
-    this.runBlockingScheme = opt;
+  setBlockingScheme(opt){
+    this.blockingScheme = opt;
     this.ready = true;
   }
 
@@ -206,8 +204,64 @@ export class OffensivePlaycall extends Playcall {
     return this.strongSide;
   }
 
+  isRun(){
+    return this.playType == 'Run';
+  }
+
+  isPass(){
+    return this.playType == 'Pass';
+  }
+
+  isRPO(){
+    return this.playType == 'RPO';
+  }
+
+  isStrongsideRun(){
+    return this.playType == 'Run'
+           && (
+            (this.strongSide == 'Right' && parseInt(this.runCall.name)%2 == 0)
+            || (this.strongSide == 'Left' && parseInt(this.runCall.name)%2 != 0)
+           );            
+  }
+
+  isInsideRun(){
+    return this.playType == 'Run'
+           && (parseInt(this.runCall.name.charAt(1)) < 5);            
+  }
+
   getFullText(){
-    return 'playcall here'; //this.formation.text() + ' ' + this.text();
+    let str = '';
+    if(this.personnel){
+      str += '('+this.personnel.name+') ';
+    }
+    if(this.snapType){
+      if(!this.snapType.doNotShowInPlaycall){
+        str += this.snapType.name + ' ';
+      }
+    }
+    if(this.RBAlignment){
+      if(!this.RBAlignment.doNoShowInPlaycall){
+        str += this.RBAlignment.name + ' ';
+      }
+    }
+    if(this.WRAlignment){
+      if(!this.WRAlignment.doNoShowInPlaycall){
+        str += this.WRAlignment.name + ' ';
+      }
+    }
+    if(this.strongSide){
+      str += this.strongSide + ' ';
+    }
+    // RUNS
+    if(this.runCall){
+      str += this.runCall.name + ' ';
+    }
+
+    if(this.blockingScheme){
+      str += this.blockingScheme.name + ' ';
+    }
+
+    return str;
   }
 
 

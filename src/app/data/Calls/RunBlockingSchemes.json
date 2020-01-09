@@ -1,5 +1,7 @@
 [
   {
+    "name":"Dive"
+  },{
     "name":"Zone"
   },{
     "name":"Power"
@@ -7,6 +9,8 @@
     "name":"Pull"
   },{
     "name":"Trap"
+  },{
+    "name":"Counter"
   },{
     "name":"Draw"
   }

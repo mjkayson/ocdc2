@@ -69,6 +69,7 @@
           </ion-col>
         </ion-row>
         <ion-row>
+          <ion-row><ion-col class="row-header">Play Type</ion-col></ion-row>
           <ion-col size="2"
                    [class.selected]="playcall.playType == opt"
                    [class.not-selected]="playcall.playType && playcall.playType != opt"
@@ -90,9 +91,9 @@
         <ion-row *ngIf="playcall.playType == 'Run'"><ion-col class="row-header">Blocking Scheme</ion-col></ion-row>
         <ion-row *ngIf="playcall.playType == 'Run'">
           <ion-col size="2"
-                   [class.selected]="playcall.runBlockingScheme == opt"
-                   [class.not-selected]="playcall.runBlockingScheme && playcall.runBlockingScheme != opt"
-                   (click)="playcall.setRunBlockingScheme(opt)" *ngFor="let opt of playcall.runBlockingSchemes">
+                   [class.selected]="playcall.blockingScheme == opt"
+                   [class.not-selected]="playcall.blockingScheme && playcall.blockingScheme != opt"
+                   (click)="playcall.setBlockingScheme(opt)" *ngFor="let opt of playcall.runBlockingSchemes">
             <div>{{ opt.name }}</div>
           </ion-col>
         </ion-row>
@@ -114,12 +115,21 @@
           <div>{{ opt.name }}</div>
         </ion-col>
       </ion-row>
-      <ion-row><ion-col class="row-header">Formation</ion-col></ion-row>
+      <ion-row><ion-col class="row-header">Line Alignment</ion-col></ion-row>
       <ion-row>        
         <ion-col size="3"
-                 [class.selected]="playcall.formation == opt"
-                 [class.not-selected]="playcall.formation && playcall.formation != opt"
-                 (click)="playcall.setFormation(opt)"  *ngFor="let opt of playcall.getFormationOptions()">
+                 [class.selected]="playcall.lineAlignment == opt"
+                 [class.not-selected]="playcall.lineAlignment && playcall.lineAlignment != opt"
+                 (click)="playcall.setLineAlignment(opt)"  *ngFor="let opt of playcall.getLineAlignmentOptions()">
+          <div>{{ opt.name }}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row><ion-col class="row-header">Box Alignment</ion-col></ion-row>
+      <ion-row>        
+        <ion-col size="3"
+                 [class.selected]="playcall.boxAlignment == opt"
+                 [class.not-selected]="playcall.boxAlignment && playcall.boxAlignment != opt"
+                 (click)="playcall.setBoxAlignment(opt)"  *ngFor="let opt of playcall.getBoxAlignmentOptions()">
           <div>{{ opt.name }}</div>
         </ion-col>
       </ion-row>
@@ -128,7 +138,7 @@
         <ion-col size="3"
                  [class.selected]="playcall.lineCall == opt"
                  [class.not-selected]="playcall.lineCall && playcall.lineCall != opt"
-                 (click)="playcall.setLineCall(opt)"  *ngFor="let opt of playcall.getLineOptions()">
+                 (click)="playcall.setLineCall(opt)"  *ngFor="let opt of playcall.getLineCallOptions()">
           <div>{{ opt.name }}</div>
         </ion-col>
       </ion-row>

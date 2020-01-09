@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>OCDC</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <p>In Play Grid</p>  
+
+  
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-no-padding">        
+
+        <ion-col *ngFor="let seg of segments; let i = index" class="ion-no-padding" size="4">
+    
+          <ion-grid class="ion-no-padding">
+            <ion-row class="ion-no-padding" *ngFor="let row of rows; let r = index">
+              <div *ngIf="r == (rows.length - this.yOffset)" class="LoS"></div>
+              <ion-col class="ion-no-padding" *ngFor="let col of cols[i]; let pos = index;">
+                <div class="wrap">
+                  <div class="number">
+                    {{ col }}
+                  </div>
+                  <div *ngIf="hasPlayer(r, seg, pos)" [class]="getPlayerClass(r, seg, pos)">
+                    <div class="influence"></div>
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+    
+        </ion-col>
+    
+    </ion-row>
+  </ion-grid>
+      
+
+</ion-content>

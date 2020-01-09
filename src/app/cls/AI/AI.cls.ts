@@ -30,13 +30,12 @@ export class AI {
 
   static getSpecificDefensivePlaycall(){
     let call = new DefensivePlaycall();
-    call.personnel = call.personnelOptions[0].opts[0]; // 43
-    let formation = call.formationOptions[0].opts[2]; // 4-30
-    call.formation = formation;
-    //call.line = call.stuntOptions[0].opts[2]; // Weak
-    //call.coverage = call.coverageOptions[0].opts[1]; // Cover 2
-    // no blitzes yet
-
+    call.personnel = call.personnelOptions[0]; // 43
+    call.lineAlignment = call.lineAlignments[2];
+    call.boxAlignment = call.boxAlignments[1];
+    call.lineCall = call.lineCalls[3];
+    call.coverage = call.coverages[2];
+    call.depth = call.depths[0];
     return call;
   }
 

@@ -60,13 +60,18 @@ export class FieldViewComponent implements AfterContentInit {
     if(!this.engine || !call.personnel) return;
     this.removePlayers();
     if(onDefense){
-      if(!call.formation) return;
-      call.getLineAlignment().alignments.forEach(pos=>{
-        this.addPlayer(this.getDLineXY(pos));
-      });
-      call.getBoxAlignment().alignment.forEach(pos=>{
-        this.addPlayer(this.getBoxXY(pos));
-      });
+
+      if(call.lineAlignment){
+        call.getLineAlignment().alignments.forEach(pos=>{
+          this.addPlayer(this.getDLineXY(pos));
+        });
+      }
+      if(call.boxAlignment){
+        call.getBoxAlignment().alignments.forEach(pos=>{
+          this.addPlayer(this.getBoxXY(pos));
+        });
+      }
+
     } else {
 
       // O Line

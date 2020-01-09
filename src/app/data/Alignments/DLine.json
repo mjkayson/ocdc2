@@ -1,7 +1,7 @@
 [
   {
-    "id": 1,
-    "name":"4 Down Base",
+    "name":"Base",
+    "doNotShowInPlaycall": true,
     "alignments": [
       { "technique": 2 },
       { "technique": 7 },
@@ -10,8 +10,7 @@
     ]
   },
   {
-    "id": 2,
-    "name":"4 Down Over",
+    "name":"Over",
     "alignments": [
       { "technique": 3 },
       { "technique": 7 },
@@ -20,8 +19,8 @@
     ]
   },
   {
-    "id": 3,
-    "name":"3 Down Base",
+    "name":"Base",
+    "doNotShowInPlaycall": true,
     "alignments": [
       { "technique": 1 },
       { "technique": 7 },
@@ -29,8 +28,7 @@
     ]
   },
   {
-    "id": 4,
-    "name":"Goal Base",
+    "name":"Base",
     "alignments": [
       { "technique": 0 },
       { "technique": 2, "inside": true },

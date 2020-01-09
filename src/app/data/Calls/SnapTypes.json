@@ -1,6 +1,7 @@
 [
   {
     "name":"Reg",
+    "doNotShowInPlaycall": true,
     "alignment": { "x": 0, "y": 6}
   },
   {
