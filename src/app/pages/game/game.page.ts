@@ -17,20 +17,23 @@ import { OCDCEngine } from '../../cls/OCDCEngine/OCDCEngine.cls';
 })
 export class GamePage implements OnInit {  
 
-  @ViewChild('devTools', {static: false}) devTools:any;
+  @ViewChild('devTools',  {static: false}) devTools:any;
   @ViewChild('fieldView', {static: false}) fieldView:any;
+  @ViewChild('playGrid',  {static: false}) playGrid:any;
+  @ViewChild('lineGrid',  {static: false}) lineGrid:any;
 
   presnap:boolean = false;
   ai_playcall;
   player_playcall;
   playcall_off;
   playcall_def;
+  gridCategory = 'play';
 
   simulating:boolean = false;
   simCount:number = 0;
   results:any = [];
 
-  showDevTools:boolean = false;
+  showDevTools:boolean = true;
 
   constructor(public toastController: ToastController,
               public modalController: ModalController,
@@ -40,6 +43,10 @@ export class GamePage implements OnInit {
 
   ngOnInit() {
     this.showPlaycallPromptToast();
+  }
+
+  segmentChanged(event){
+    this.gridCategory = event;
   }
 
   async showPlaycallModal() {
@@ -152,9 +159,26 @@ export class GamePage implements OnInit {
 
   snap(){
     this.presnap = false;
-    OCDCEngine.resolve(this.game);
-    this.game.resolveCurrentPlay();  
+    //OCDCEngine.resolve(this.game);
+    //this.game.resolveCurrentPlay();  
     //console.log(this.game.getLastPlay());  
+    //console.log(this.playcall_off);
+    this.lineGrid.setRunLocation(this.playcall_off.runCall.hole);
+    let probs = this.lineGrid.getProbs();
+    for(var i=0;i<10000;i++){
+      let ended = false;
+      let ballY = 0;
+      for(var pos = 0; pos < probs.length; pos++){
+        if(ended == true) continue;
+        ballY += 1; //Siri.getRandomNumber(0,pos*150)/100;
+        let percent = probs[pos]*100;
+        if(Siri.getRandomNumber(1,100) <= percent || pos >= probs.length){
+          ended = true;
+        }
+      }
+      this.devTools.update(ballY);
+    }
+    //console.log('probs', this.lineGrid.getProbs());
     this.showPlaycallPromptToast();
   }
 

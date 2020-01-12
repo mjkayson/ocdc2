@@ -12,6 +12,8 @@ import { GameStateComponent } from 'src/app/components/game-state/game-state.com
 import { PlayByPlayComponent } from 'src/app/components/play-by-play/play-by-play.component';
 import { FieldViewComponent } from 'src/app/components/field-view/field-view.component';
 import { PlayCallModalComponent } from 'src/app/components/play-call-modal/play-call-modal.component';
+import { PlayGridComponent } from 'src/app/components/play-grid/play-grid.component';
+import { LineGridComponent } from 'src/app/components/line-grid/line-grid.component';
 
 import { DevToolsComponent } from 'src/app/components/dev-tools/dev-tools.component';
 
@@ -28,6 +30,8 @@ import { DevToolsComponent } from 'src/app/components/dev-tools/dev-tools.compon
     PlayByPlayComponent,
     FieldViewComponent,
     PlayCallModalComponent,
+    LineGridComponent,
+    PlayGridComponent,
     DevToolsComponent
   ],
   entryComponents: [

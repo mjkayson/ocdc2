@@ -1,29 +1,38 @@
 [
   {
-    "name":"20"
+    "name":"20",
+    "hole": 0
   },
   {
-    "name":"21"
+    "name":"21",
+    "hole": 1
   },
   {
-    "name":"22" 
+    "name":"22",
+    "hole": 2
   },
   {
-    "name":"23" 
+    "name":"23",
+    "hole": 3
   },
   {
-    "name":"24" 
+    "name":"24",
+    "hole": 4
   },
   {
-    "name":"25" 
+    "name":"25",
+    "hole": 5
   },
   {
-    "name":"26" 
+    "name":"26",
+    "hole": 6
   },
   {
-    "name":"27" 
+    "name":"27",
+    "hole": 7
   },
   {
-    "name":"28" 
+    "name":"28",
+    "hole": 8
   }
 ]

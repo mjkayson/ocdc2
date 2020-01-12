@@ -1,0 +1,79 @@
+<div *ngIf="showGrid">
+  <ion-grid class="ion-no-padding">
+  
+    <!--<div #POA class="POA"></div>-->
+
+    <ion-row class="ion-no-padding">        
+
+        <ion-col *ngFor="let seg of segments; let i = index" class="ion-no-padding" size="4">
+    
+          <ion-grid class="ion-no-padding">
+            <ion-row class="ion-no-padding" *ngFor="let row of rows; let r = index">
+                <div *ngIf="r == (rows.length - this.yOffset)" class="LoS"></div>
+              <ion-col class="ion-no-padding" *ngFor="let col of cols[i]; let pos = index;">
+                <div class="wrap" (click)="showModTotals(i,pos)">
+                  <div *ngIf="(r == yOffset) || (r == yOffset+1)" [class]="getInfluenceClass(r,i,pos)">
+                    {{ getGridInfluence(r, i, pos) }}
+                  </div>
+                  <div *ngIf="hasPlayer(r, seg, pos)" [class]="getPlayerClass(r, seg, pos)">
+                    <!--<div class="influence"></div>-->
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+    
+        </ion-col>
+    
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+        <ion-col>
+          P1
+        </ion-col>
+        <ion-col>
+          P2
+        </ion-col>
+        <ion-col>
+          P3
+        </ion-col>
+        <ion-col>
+          P4 
+        </ion-col>
+        <ion-col>
+          P5 
+        </ion-col>
+        <ion-col>
+          P6 
+        </ion-col>
+        <ion-col>
+          P7 
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+          {{ probs[0] }}
+        </ion-col>
+        <ion-col>
+          {{ probs[1] }}
+        </ion-col>
+        <ion-col>
+          {{ probs[2] }}
+        </ion-col>
+        <ion-col>
+          {{ probs[3] }}
+        </ion-col>
+        <ion-col>
+          {{ probs[4] }}
+        </ion-col>
+        <ion-col>
+          {{ probs[5] }}
+        </ion-col>
+        <ion-col>
+          {{ probs[6] }}
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

@@ -3,10 +3,12 @@ p {
 }
 .wrap {
   background: rgba(238,238,238,.5);
-  margin: 1px;
+  margin: 0px;
   text-align: center;
-  font-size: 6px;
+  font-size: 4px;
   padding: 0px;
+  min-width: 5px;
+  height: 4px;
 }
 .number {
   visibility: hidden;
@@ -15,11 +17,11 @@ p {
 
 .player {
   position: absolute;
-  left: 2.5px;
-  top: 2.5px;
-  height: 5px;
-  width: 5px;
-  border-radius: 2.5px;
+  left: 0px;
+  top: 0px;
+  height: 4px;
+  width: 4px;
+  border-radius: 2px;
   background: #ccc;
   border: .5px solid #000;
 }

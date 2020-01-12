@@ -1,18 +1,23 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>-</ion-title>
+    <ion-title>OCDC</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <game-state [game]="game" type="max"></game-state>
-  <field-view #fieldView></field-view>
+  <!--<game-state [game]="game" type="max"></game-state>-->
+  <!--<field-view #fieldView></field-view>-->
+
+  <!--<play-grid #playGrid></play-grid>-->
+
+  <line-grid #lineGrid></line-grid>
+
   <dev-tools *ngIf="showDevTools" #devTools></dev-tools>
   
   <div *ngIf="playcall_off" class="playDisplay ion-text-center">
     <strong>{{ playcall_off.getFullText() }}</strong> vs. <strong>{{ playcall_def.getFullText() }}</strong>
   </div>
-  <play-by-play [game]="game"></play-by-play>
+  <!--<play-by-play [game]="game"></play-by-play>-->
   <ion-button expand="block" size="small" *ngIf="presnap" (click)="snap()">Snap</ion-button>
   
   <ion-button *ngIf="showDevTools" expand="block" size="small" (click)="simulate(true)">Simulate</ion-button>

@@ -21,7 +21,7 @@
     </ion-grid>
 
 
-    <field-view #fieldView [isPlaycall]="1"></field-view>
+    <play-grid #playGrid isPlaycall="1"></play-grid>
     
     <!-- OFFENSIVE -->
     <ion-grid *ngIf="!onDefense" class="ion-no-padding">
@@ -39,7 +39,7 @@
           <ion-col size="3"
                    [class.selected]="playcall.RBAlignment == opt"
                    [class.not-selected]="playcall.RBAlignment && playcall.RBAlignment != opt"
-                   (click)="playcall.setRBAlignment(opt)" *ngFor="let opt of playcall.getRBAlignmentOptions()">
+                   (click)="playcall.setRBAlignments(opt)" *ngFor="let opt of playcall.getRBAlignmentOptions()">
             <div>{{ opt.name }}</div>
           </ion-col>
         </ion-row>
@@ -48,23 +48,23 @@
           <ion-col size="3"
                    [class.selected]="playcall.WRAlignment == opt"
                    [class.not-selected]="playcall.WRAlignment && playcall.WRAlignment != opt"
-                   (click)="playcall.setWRAlignment(opt)" *ngFor="let opt of playcall.getWRAlignmentOptions()">
+                   (click)="playcall.setWRAlignments(opt)" *ngFor="let opt of playcall.getWRAlignmentOptions()">
             <div>{{ opt.name }}</div>
           </ion-col>
         </ion-row>
         
         <ion-row><ion-col size="6" class="row-header">Strong Side</ion-col><ion-col size="6" class="row-header">Snap</ion-col></ion-row>
         <ion-row>
-          <ion-col size="3"
+          <ion-col size="2"
                    [class.selected]="playcall.strongSide == opt"
                    [class.not-selected]="playcall.strongSide && playcall.strongSide != opt"
                    (click)="playcall.setStrongSide(opt)" *ngFor="let opt of playcall.strongSides">
-            <div>{{ opt }}</div>
+            <div>{{ opt.name }}</div>
           </ion-col>
-          <ion-col size="3"
-                   [class.selected]="playcall.snapType == opt"
-                   [class.not-selected]="playcall.snapType && playcall.snapType != opt"
-                   (click)="playcall.setSnapType(opt)" *ngFor="let opt of playcall.snapTypes">
+          <ion-col size="2"
+                   [class.selected]="playcall.QBAlignment == opt"
+                   [class.not-selected]="playcall.QBAlignment && playcall.QBAlignment != opt"
+                   (click)="playcall.setQBAlignment(opt)" *ngFor="let opt of playcall.QBAlignments">
             <div>{{ opt.name }}</div>
           </ion-col>
         </ion-row>
@@ -74,29 +74,31 @@
                    [class.selected]="playcall.playType == opt"
                    [class.not-selected]="playcall.playType && playcall.playType != opt"
                    (click)="playcall.setPlayType(opt)" *ngFor="let opt of playcall.playTypes">
-            <div>{{ opt }}</div>
+            <div>{{ opt.name }}</div>
           </ion-col>
         </ion-row>
 
         <!-- RUNS -->
-        <ion-row *ngIf="playcall.playType == 'Run'"><ion-col class="row-header">Call</ion-col></ion-row>
-        <ion-row *ngIf="playcall.playType == 'Run'">
-          <ion-col size="1"
-                   [class.selected]="playcall.runCall == opt"
-                   [class.not-selected]="playcall.runCall && playcall.runCall != opt"
-                   (click)="playcall.setRunCall(opt)" *ngFor="let opt of playcall.runCalls">
-            <div>{{ opt.name }}</div>
-          </ion-col>
-        </ion-row>
-        <ion-row *ngIf="playcall.playType == 'Run'"><ion-col class="row-header">Blocking Scheme</ion-col></ion-row>
-        <ion-row *ngIf="playcall.playType == 'Run'">
-          <ion-col size="2"
-                   [class.selected]="playcall.blockingScheme == opt"
-                   [class.not-selected]="playcall.blockingScheme && playcall.blockingScheme != opt"
-                   (click)="playcall.setBlockingScheme(opt)" *ngFor="let opt of playcall.runBlockingSchemes">
-            <div>{{ opt.name }}</div>
-          </ion-col>
-        </ion-row>
+        <div *ngIf="playcall.playType">
+          <ion-row *ngIf="playcall.playType.name == 'Run'"><ion-col class="row-header">Call</ion-col></ion-row>
+          <ion-row *ngIf="playcall.playType.name == 'Run'">
+            <ion-col size="1"
+                    [class.selected]="playcall.runCall == opt"
+                    [class.not-selected]="playcall.runCall && playcall.runCall != opt"
+                    (click)="playcall.setRunCall(opt)" *ngFor="let opt of playcall.runCalls">
+              <div>{{ opt.name }}</div>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="playcall.playType.name == 'Run'"><ion-col class="row-header">Blocking Scheme</ion-col></ion-row>
+          <ion-row *ngIf="playcall.playType.name == 'Run'">
+            <ion-col size="2"
+                    [class.selected]="playcall.blockingScheme == opt"
+                    [class.not-selected]="playcall.blockingScheme && playcall.blockingScheme != opt"
+                    (click)="playcall.setBlockingScheme(opt)" *ngFor="let opt of playcall.runBlockingSchemes">
+              <div>{{ opt.name }}</div>
+            </ion-col>
+          </ion-row>
+        </div>
 
         <!-- PASSES -->
         

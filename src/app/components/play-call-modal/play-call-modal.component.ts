@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
-import { Formation } from '../../cls/Playcalls/Formation.cls';
 import { OffensivePlaycall } from '../../cls/Playcalls/OffensivePlaycall.cls';
 import { DefensivePlaycall } from '../../cls/Playcalls/DefensivePlaycall.cls';
 
@@ -15,6 +14,7 @@ export class PlayCallModalComponent implements OnInit {
   @Input() game;
   @Input() type;
   @ViewChild('fieldView', {static: false}) fieldView:any;
+  @ViewChild('playGrid', {static: false}) playGrid:any;
 
   gameState;
   onDefense:boolean = false;
@@ -24,7 +24,6 @@ export class PlayCallModalComponent implements OnInit {
 
   currentSection:string = 'P'; // P for Personnel, then F for Formation, then T for Type, then C for Call
   personnel:any = {};
-  formation:Formation = new Formation();
   playcall;
   currentReceiver;
 
@@ -51,7 +50,12 @@ export class PlayCallModalComponent implements OnInit {
   }
 
   updateFieldView(){
-    this.fieldView.setPlaySelectView(this.playcall, this.onDefense);
+    if(this.fieldView){
+      this.fieldView.setPlaySelectView(this.playcall, this.onDefense);
+    }
+    if(this.playGrid){
+      this.playGrid.update(this.playcall, this.onDefense);
+    }
   }
   
   call(){

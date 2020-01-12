@@ -19,6 +19,8 @@ export class Playcall {
   assignments:PlaycallElement[] = [];
   ready:boolean = false;
 
+  players = [];
+
   constructor(){}
 
   setPersonnel(personnel){
@@ -27,6 +29,10 @@ export class Playcall {
   
   nextPhase(){
     this.phase++;
+  }
+
+  getPlayers(){
+    return this.players;
   }
 
   setCurrentPhase(){}

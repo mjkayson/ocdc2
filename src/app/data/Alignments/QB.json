@@ -1,0 +1,14 @@
+[
+  {
+    "name":"Reg",
+    "doNotIncludeInPlaycall": true,
+    "alignments": [
+      { "x": 0, "y": -1, "pos": "QB" }
+    ]
+  },{
+    "name":"Gun",
+    "alignments": [
+      { "x": 0, "y": -4, "pos": "QB" }
+    ]
+  }
+]

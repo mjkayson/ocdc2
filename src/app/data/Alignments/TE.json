@@ -1,31 +1,34 @@
 [
   {
-    "name":"Pro",
+    "name":"Empty",
+    "alignments": []
+  },{
+    "name":"Left",
     "alignments": [
-      { "x": 6, "y": 8, "pos": "FB" },
-      { "x": -6, "y": 8, "pos": "HB" }
+      { "x": -6, "y": 0, "pos": "TE" }
     ]
   },{
-    "name":"I",
+    "name":"Right",
     "alignments": [
-      { "x": 0, "y": 7, "pos": "FB" },
-      { "x": 0, "y": 12, "pos": "TB" }
+      { "x": 6, "y": 0, "pos": "TE" }
     ]
   },{
-    "name":"Wing",
+    "name":"Double",
     "alignments": [
-      { "x": -20, "y": 5, "pos": "WB" },
-      { "x": 0, "y": 12, "pos": "TB" }
+      { "x": 6, "y": 0, "pos": "TE" },
+      { "x": -6, "y": 0, "pos": "TE" }
     ]
   },{
-    "name":"Single",
+    "name":"2 Left",
     "alignments": [
-      { "x": 0, "y": 12, "pos": "TB" }
+      { "x": -6, "y": 0, "pos": "TE" },
+      { "x": -8, "y": -1, "pos": "TE" }
     ]
   },{
-    "name":"Offset",
+    "name":"2 Right",
     "alignments": [
-      { "x": 7, "y": 10, "pos": "HB" }
+      { "x": 8, "y": 0, "pos": "TE" },
+      { "x": 10, "y": -1, "pos": "TE" }
     ]
   }
 ]

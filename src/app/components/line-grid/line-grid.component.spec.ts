@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { PlayCallModalComponent } from './play-call-modal.component';
+import { LineGridComponent } from './line-grid.component';
 
-describe('PlayCallModalComponent', () => {
-  let component: PlayCallModalComponent;
-  let fixture: ComponentFixture<PlayCallModalComponent>;
+describe('LineGridComponent', () => {
+  let component: LineGridComponent;
+  let fixture: ComponentFixture<LineGridComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlayCallModalComponent ],
+      declarations: [ LineGridComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PlayCallModalComponent);
+    fixture = TestBed.createComponent(LineGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

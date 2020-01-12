@@ -66,7 +66,7 @@ export class DevToolsComponent implements AfterContentInit {
       chart: {
         type: 'area',
         margin: [10,0,20,35],
-        height: 260
+        height: 200
       },
       credits: { enabled: false },
       tooltip: { enabled: false },
@@ -89,7 +89,7 @@ export class DevToolsComponent implements AfterContentInit {
       yAxis: {
         title: null,
         min: 0,
-        max: 16,
+        max: 30,
         tickInterval: 2
       },
       plotOptions: {

@@ -1,1 +1,5 @@
-["Run","Pass","RPO"]
+[
+  { "name": "Run" },
+  { "name": "Pass" },
+  { "name": "RPO" }
+]
