@@ -44,7 +44,7 @@ export class PlayCallModalComponent implements OnInit {
   }
 
   init(){
-    this.onDefense = false; //this.gameState.possession == 'A'? true : false;
+    this.onDefense = true; //this.gameState.possession == 'A'? true : false;
     this.playcall = this.onDefense? new DefensivePlaycall() : new OffensivePlaycall();
     this.interval = setInterval(()=>this.updateFieldView(),100);
   }

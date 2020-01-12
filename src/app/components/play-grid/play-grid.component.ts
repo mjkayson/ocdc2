@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { OffensivePlaycall } from 'src/app/cls/Playcalls/OffensivePlaycall.cls';
 
 @Component({
   selector: 'play-grid',
@@ -40,19 +41,25 @@ export class PlayGridComponent implements OnInit {
 
   update(playcall, onDefense){
     this.onDefense = onDefense;
+    if(this.onDefense){
+      this.yOffset = 6;
+    }
     this.playcall = playcall;
     if(playcall.strongSide){
       this.isStrongLeft = playcall.strongSide.name == 'Left'? true : false;
+    }
+    if(this.onDefense){
+      playcall.addMockOffensiveLine();
     }
     this.setPlayers(playcall.getPlayers());    
   }
 
   setPlayers(players){
-    this.players = players;    
+    this.players = players;  
     for(var i=0;i<this.players.length;i++){
       this.players[i].rsi = this.getRSI(this.players[i]);
     }
-  }
+  }  
 
   getPlayers(){
     return this.players;

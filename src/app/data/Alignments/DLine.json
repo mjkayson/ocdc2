@@ -3,39 +3,46 @@
     "name":"Base",
     "doNotShowInPlaycall": true,
     "alignments": [
-      { "technique": 2 },
-      { "technique": 7 },
-      { "technique": 2, "inside": true, "weak": true },
-      { "technique": 5, "weak": true }
+      { "x": 2,  "y": 1 },
+      { "x": 6,  "y": 1 },
+      { "x": -2, "y": 1 },
+      { "x": -4, "y": 1 }
     ]
   },
   {
     "name":"Over",
     "alignments": [
-      { "technique": 3 },
-      { "technique": 7 },
-      { "technique": 0, "inside": true, "weak": true },
-      { "technique": 3, "inside": true, "weak": true }
+      { "x": 3,  "y": 1 },
+      { "x": 7,  "y": 1 },
+      { "x": -1, "y": 1 },
+      { "x": -3, "y": 1 }
     ]
   },
   {
     "name":"Base",
     "doNotShowInPlaycall": true,
     "alignments": [
-      { "technique": 1 },
-      { "technique": 7 },
-      { "technique": 5, "weak": true }
+      { "x": -5,  "y": 1 },
+      { "x": 5,  "y": 1 },
+      { "x": 0, "y": 1 }
+    ]
+  },
+  {
+    "name":"Over",
+    "alignments": [
+      { "x": -4,  "y": 1 },
+      { "x": 6,  "y": 1 },
+      { "x": 2, "y": 1 }
     ]
   },
   {
     "name":"Base",
     "alignments": [
-      { "technique": 0 },
-      { "technique": 2, "inside": true },
-      { "technique": 4, "inside": true },
-      { "technique": 7 },
-      { "technique": 2, "weak": true },
-      { "technique": 4, "weak": true }
+      { "x": -6,  "y": 1 },
+      { "x": -3,  "y": 1 },
+      { "x": 0, "y": 1 },
+      { "x": 3, "y": 1 },
+      { "x": 6, "y": 1 }
     ]
   }
 ]

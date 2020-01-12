@@ -1,0 +1,47 @@
+[
+  {
+    "name":"Base",
+    "doNotShowInPlaycall": true,
+    "alignments": [
+      { "x": 9,   "y": 3,  "for": "TE", "pos": "Y" },
+      { "x": -18, "y": 4, "pos": "X" },
+      { "x": 18,  "y": 4, "pos": "Z" },
+      { "x": -3, "y": 9, "pos": "H" }
+    ]
+  },{
+    "name":"Press",
+    "alignments": [
+      { "x": 9,   "y": 2,  "for": "TE", "pos": "Y" },
+      { "x": -18, "y": 1, "pos": "X" },
+      { "x": 18,  "y": 1, "pos": "Z" },
+      { "x": -3, "y": 9, "pos": "H" }
+    ]
+  },{
+    "name":"Soft",
+    "alignments": [
+      { "x": 9,   "y": 4,  "for": "TE", "pos": "Y" },
+      { "x": -18, "y": 6, "pos": "X" },
+      { "x": 18,  "y": 6, "pos": "Z" },
+      { "x": -3, "y": 10, "pos": "H" }
+    ]
+  },{
+    "name":"Base",
+    "doNotShowInPlaycall": true,
+    "alignments": [
+      { "x": 6,   "y": 4,  "for": "TE", "pos": "Y" },
+      { "x": -6,  "y": 4,  "for": "TE", "pos": "H" },
+      { "x": -18, "y": 5, "pos": "X" },
+      { "x": 18,  "y": 5, "pos": "Z" },
+      { "x": -12,  "y": 5, "pos": "Z" }
+    ]
+  },{
+    "name":"Press",
+    "alignments": [
+      { "x": 8,   "y": 2 },
+      { "x": -3,  "y": 14 },
+      { "x": -18, "y": 1 },
+      { "x": 18,  "y": 1 },
+      { "x": -12, "y": 2 }
+    ]
+  }
+]

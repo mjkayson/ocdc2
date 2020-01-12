@@ -1,30 +1,121 @@
 [
   {
     "name":"34",
-    "package": [3,4,4]
+    "package": [3,4,4],
+    "positions": [
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "SS"},
+      {"type": "DB", "pos": "FS"}
+    ]
   },
   {
     "name":"43",
-    "package": [4,3,4]
-  },
-  {
-    "name":"42",
-    "package": [3,3,5]
+    "package": [4,3,4],
+    "positions": [
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "SS"},
+      {"type": "DB", "pos": "FS"}
+    ]
   },
   {
     "name":"33",
-    "package": [3,3,5]
+    "package": [3,3,5],
+    "positions": [
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "SS"},
+      {"type": "DB", "pos": "FS"}
+    ]
+  },
+  {
+    "name":"42",
+    "package": [4,2,5],
+    "positions": [
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "SS"},
+      {"type": "DB", "pos": "FS"}
+    ]
   },
   {
     "name":"32",
-    "package": [3,3,5]
+    "package": [3,2,6],
+    "positions": [
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "SS"},
+      {"type": "DB", "pos": "FS"}
+    ]
   },
   {
     "name":"52",
-    "package": [6,2,3]
+    "package": [5,2,4],
+    "positions": [
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "SS"},
+      {"type": "DB", "pos": "FS"}
+    ]
   },
   {
     "name":"62",
-    "package": [6,2,3]
+    "package": [6,2,3],
+    "positions": [
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "DL", "pos": "DL"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "LB", "pos": "LB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "CB"},
+      {"type": "DB", "pos": "FS"}
+    ]
   }
 ]

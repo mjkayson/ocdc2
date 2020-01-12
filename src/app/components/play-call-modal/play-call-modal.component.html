@@ -135,6 +135,15 @@
           <div>{{ opt.name }}</div>
         </ion-col>
       </ion-row>
+      <ion-row><ion-col class="row-header">Secondary Alignment</ion-col></ion-row>
+      <ion-row>
+        <ion-col size="3"
+                 [class.selected]="playcall.dbAlignment == opt"
+                 [class.not-selected]="playcall.dbAlignment && playcall.dbAlignment != opt"
+                 (click)="playcall.setDBAlignment(opt)"  *ngFor="let opt of playcall.getDBAlignmentOptions()">
+          <div>{{ opt.name }}</div>
+        </ion-col>
+      </ion-row>
       <ion-row><ion-col class="row-header">Line Call</ion-col></ion-row>
       <ion-row>
         <ion-col size="3"
@@ -150,15 +159,6 @@
                  [class.selected]="playcall.coverage == opt"
                  [class.not-selected]="playcall.coverage && playcall.coverage != opt"
                  (click)="playcall.setCoverage(opt)"  *ngFor="let opt of playcall.getCoverageOptions()">
-          <div>{{ opt.name }}</div>
-        </ion-col>
-      </ion-row>
-      <ion-row><ion-col class="row-header">Secondary Depth</ion-col></ion-row>
-      <ion-row>
-        <ion-col size="3"
-                 [class.selected]="playcall.depth == opt"
-                 [class.not-selected]="playcall.depth && playcall.depth != opt"
-                 (click)="playcall.setDepth(opt)"  *ngFor="let opt of playcall.getDepthOptions()">
           <div>{{ opt.name }}</div>
         </ion-col>
       </ion-row>

@@ -122,26 +122,6 @@ export class OffensivePlaycall extends Playcall {
     this.setQBAlignment(this.QBAlignments[0]);
   }
 
-  getPlayersByPosition(pos){
-    let p = [];
-    this.players.forEach(player=>{
-      if(player.pos == pos){
-        p.push(player);
-      }
-    });
-    return p;
-  }
-
-  getPlayersByType(type){
-    let p = [];
-    this.players.forEach(player=>{
-      if(player.type == type){
-        p.push(player);
-      }
-    });
-    return p;
-  }
-
   setQBAlignment(opt){
     //if(this.QBAlignment == opt) return;
     this.QBAlignment = opt;
@@ -161,7 +141,7 @@ export class OffensivePlaycall extends Playcall {
   setRBAlignments(opt){
     //if(this.RBAlignment == opt) return;
     this.RBAlignment = opt;
-    let players = this.getPlayersByType('B');
+    let players = this.getPlayersByType('RB');
     if(!players){
       console.log('ALERT: trying to set RB aligments when there are no RBs! (but is this an empty set?)');
       return;
@@ -176,7 +156,7 @@ export class OffensivePlaycall extends Playcall {
 
   setWRAlignments(opt){
     //if(this.WRAlignment == opt) return;
-    let players = this.getPlayersByType('R');
+    let players = this.getPlayersByType('WR');
     if(!players){
       console.log('ALERT: trying to set WR/TE aligments when there are none!');
       return;
@@ -255,7 +235,7 @@ export class OffensivePlaycall extends Playcall {
     let opts = [];
     this.WRAlignments.forEach(opt=>{
       // checks there are the same number of alignments as WRs
-      if(opt.alignments.length == this.getPlayersByType('R').length){
+      if(opt.alignments.length == this.getPlayersByType('WR').length){
         opts.push(opt);
       }
     });

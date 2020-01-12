@@ -12,6 +12,7 @@ export class LineGridComponent implements OnInit {
   @ViewChildren('A') PositionEl:any;
 
   showGrid:boolean = true;
+  isStrongLeft:boolean = false;
    
   rows = [
     1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
@@ -40,40 +41,30 @@ export class LineGridComponent implements OnInit {
     [4,5,6,7,8,9,10]
   ];
 
-  players:any = [
-    // OFFENSE
-    // LINE
-    { pos: 'OL', team: 'O', x: -4, y: 0, assignment: '' },
-    { pos: 'OL', team: 'O', x: -2, y: 0, assignment: '' },
-    { pos: 'C', team: 'O',  x: 0,  y: 0, assignment: '' },
-    { pos: 'OL', team: 'O', x: 2,  y: 0, assignment: '' },
-    { pos: 'OL', team: 'O', x: 4,  y: 0, assignment: '' },
-    // QB
-    { pos: 'QB', team: 'O', x: 0,  y: -1, assignment: '' },
-    // WRs & RBs
-    { pos: 'TE', team: 'O', x: 6,  y: 0, assignment: '' },
-    { pos: 'WR', team: 'O', x: 0,  y: -3, assignment: '' },
-    { pos: 'WR', team: 'O', x: 0,  y: -5, assignment: '' },
-
-    // DEFENSE
-    // DLINE
-    { pos: 'DL', team: 'D', x: -4, y: 1, assignment: '' },
-    { pos: 'DL', team: 'D', x: -1, y: 1, assignment: '' },
-    { pos: 'DL', team: 'D', x: 2,  y: 1, assignment: '' },
-    { pos: 'DL', team: 'D', x: 6,  y: 1, assignment: 'weak' },
-    // LBs,
-    { pos: 'LB', team: 'D', x: -3,  y: 3, assignment: '' },
-    { pos: 'LB', team: 'D', x: 1,  y: 3, assignment: '' },
-    { pos: 'LB', team: 'D', x: 5,  y: 2, assignment: '' },
-    // DBs,
-    { pos: 'DB', team: 'D', x: 6,  y: 5, assignment: '' }
-  ]
+  players;
 
   ready = false;
 
   constructor() {}
 
   ngOnInit() {
+    /*
+    this.resetGridInfluence();
+    for(var i=0;i<this.players.length;i++){
+      this.players[i].rsi = this.getRSI(this.players[i]);
+      //console.log(this.players[i]);
+      this.setGridInfluence(this.players[i], 1);
+    }
+    this.ready = true;
+    */
+  }
+
+  update(play){
+    this.players = [...play.getOffensivePlaycall().players, ...play.getDefensivePlaycall().players];
+    let off = play.getOffensivePlaycall();    
+    if(off.strongSide){
+      this.isStrongLeft = off.strongSide.name == 'Left'? true : false;
+    }
     this.resetGridInfluence();
     for(var i=0;i<this.players.length;i++){
       this.players[i].rsi = this.getRSI(this.players[i]);
@@ -85,6 +76,7 @@ export class LineGridComponent implements OnInit {
 
   hasPlayer(row, segment, pos){
     let has = false;
+    if(!this.players) return false;
     this.players.forEach(player=>{
       let rsi = player.rsi;
       if((rsi.r == row) && (rsi.s == segment) && (rsi.i == pos)) has = true;
@@ -96,7 +88,9 @@ export class LineGridComponent implements OnInit {
   getRSI(player){
     let r,s,i;
     let x = player.x, y = player.y;
-
+    if(this.isStrongLeft){
+      x *= -1;
+    }
     // distance form LoS
     r = this.rows.length - this.yOffset - y;
     // and adjust to leave two rows in the centre

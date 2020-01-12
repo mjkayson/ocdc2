@@ -3,33 +3,33 @@
     "name":"Base",
     "doNotShowInPlaycall": true,
     "alignments": [
-      { "gap": "A", "depth": 4 },
-      { "gap": "D", "depth": 3 },
-      { "gap": "D", "weak": true, "depth": 2 }
+      { "x": 1, "y": 4, "gap": "A", "depth": 4 },
+      { "x": -5, "y": 3,  "gap": "D", "depth": 3 },
+      { "x": 4, "y": 3,  "gap": "D", "weak": true, "depth": 2 }
     ]
   },{
     "name":"Base",
     "doNotShowInPlaycall": true,
     "alignments": [
-      { "gap": "A", "depth": 4 },
-      { "gap": "D", "depth": 2 },
-      { "gap": "A", "weak": true, "depth": 4 },
-      { "gap": "D", "weak": true, "depth": 2 }
+      { "x": 2, "y": 4,  "gap": "A", "depth": 4 },
+      { "x": -2, "y": 4,  "gap": "D", "depth": 2 },
+      { "x": 6, "y": 3,  "gap": "A", "weak": true, "depth": 4 },
+      { "x": -6, "y": 3,  "gap": "D", "weak": true, "depth": 2 }
     ]
   },{
     "name":"Split",
     "alignments": [
-      { "gap": "B", "depth": 5, "shade": "outside" },
-      { "gap": "D", "depth": 3, "shade": "outside" },
-      { "gap": "B", "weak": true, "shade": "outside", "depth": 5 },
-      { "gap": "D", "weak": true, "shade": "outside", "depth": 3 }
+      { "x": 3, "y": 3,  "gap": "B", "depth": 5, "shade": "outside" },
+      { "x": -3, "y": 3,  "gap": "D", "depth": 3, "shade": "outside" },
+      { "x": -7, "y": 2,  "gap": "B", "weak": true, "shade": "outside", "depth": 5 },
+      { "x": 7, "y": 2,  "gap": "D", "weak": true, "shade": "outside", "depth": 3 }
     ]
   },{
     "name":"Base",
     "doNotShowInPlaycall": true,
     "alignments": [
-      { "gap": "B", "shade": "outside", "depth": 4 },
-      { "gap": "B", "weak": true, "depth": 3 }
+      { "x": 3, "y": 4,  "gap": "B", "shade": "outside", "depth": 4 },
+      { "x": -3, "y": 4,  "gap": "B", "weak": true, "depth": 3 }
     ]
   }
 ]

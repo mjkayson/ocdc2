@@ -69,8 +69,8 @@ export class GamePage implements OnInit {
       
       let play = new Play(this.game.getCurrentGameState());
       play.setPlaycall(this.playcall_off, this.playcall_def);
-      this.game.addPlay(play);   
-
+      this.game.addPlay(play);
+      this.lineGrid.update(play);
     }
 
   }

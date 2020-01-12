@@ -16,7 +16,6 @@ export class Playcall {
   personnel;
   formation;
   playType:PlayType;
-  assignments:PlaycallElement[] = [];
   ready:boolean = false;
 
   players = [];
@@ -34,25 +33,6 @@ export class Playcall {
   getPlayers(){
     return this.players;
   }
-
-  setCurrentPhase(){}
-
-  getPhaseName(){
-    return '';//this.currentPhase.name;
-  }
-
-  getPhaseOptions(){
-    return this.currentPhase.opts;
-  }
-  
-  addOptions(name, optionList, mod){
-    //console.log(name, optionList, mod);
-    var opts = [];
-    for(var i in mod){
-      opts.push(new mod[i]());
-    }
-    optionList.push({ name: name, opts:opts });
-  }
   
   text(){
     return 'override me';
@@ -66,12 +46,24 @@ export class Playcall {
     return this.playType;
   }
 
-  addSegment(segment){
-    this.assignments.push(segment);
+  getPlayersByPosition(pos){
+    let p = [];
+    this.players.forEach(player=>{
+      if(player.pos == pos){
+        p.push(player);
+      }
+    });
+    return p;
   }
 
-  getSegments(){
-    return this.assignments;
+  getPlayersByType(type){
+    let p = [];
+    this.players.forEach(player=>{
+      if(player.type == type){
+        p.push(player);
+      }
+    });
+    return p;
   }
 
 }
