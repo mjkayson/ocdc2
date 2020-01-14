@@ -3,6 +3,8 @@ import { ModalController } from '@ionic/angular';
 
 import { OffensivePlaycall } from '../../cls/Playcalls/OffensivePlaycall.cls';
 import { DefensivePlaycall } from '../../cls/Playcalls/DefensivePlaycall.cls';
+import { Play } from 'src/app/cls/Play/Play.cls';
+import { GameState } from 'src/app/cls/GameState/GameState.cls';
 
 @Component({
   selector: 'play-call-modal',
@@ -44,7 +46,7 @@ export class PlayCallModalComponent implements OnInit {
   }
 
   init(){
-    this.onDefense = true; //this.gameState.possession == 'A'? true : false;
+    this.onDefense = this.gameState.possession == 'A'? true : false;
     this.playcall = this.onDefense? new DefensivePlaycall() : new OffensivePlaycall();
     this.interval = setInterval(()=>this.updateFieldView(),100);
   }
@@ -54,7 +56,13 @@ export class PlayCallModalComponent implements OnInit {
       this.fieldView.setPlaySelectView(this.playcall, this.onDefense);
     }
     if(this.playGrid){
-      this.playGrid.update(this.playcall, this.onDefense);
+      let play = new Play(new GameState({}));
+      if(this.onDefense){
+        play.setPlaycall(new OffensivePlaycall(), this.playcall);
+      } else {
+        play.setPlaycall(this.playcall, new DefensivePlaycall());
+      }
+      this.playGrid.update(play, this.onDefense);
     }
   }
   

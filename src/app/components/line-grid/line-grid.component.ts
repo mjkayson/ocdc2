@@ -47,20 +47,12 @@ export class LineGridComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-    /*
-    this.resetGridInfluence();
-    for(var i=0;i<this.players.length;i++){
-      this.players[i].rsi = this.getRSI(this.players[i]);
-      //console.log(this.players[i]);
-      this.setGridInfluence(this.players[i], 1);
-    }
-    this.ready = true;
-    */
-  }
+  ngOnInit() {}
 
   update(play){
-    this.players = [...play.getOffensivePlaycall().players, ...play.getDefensivePlaycall().players];
+    let offensivePlayers = Object.assign([], play.getOffensivePlaycall().players);
+    let defensivePlayers = Object.assign([], play.getDefensivePlaycall().players);
+    this.players = [...offensivePlayers, ...defensivePlayers];
     let off = play.getOffensivePlaycall();    
     if(off.strongSide){
       this.isStrongLeft = off.strongSide.name == 'Left'? true : false;
@@ -169,8 +161,11 @@ export class LineGridComponent implements OnInit {
           currentI -= this.segmentLength;
 
         }
-        if(this.influence[r+1][currentS]){
-          this.influence[r+1][currentS][currentI] += mod[c];
+        //console.log(this.influence, r, currentS, currentI);
+        if(this.influence[r+1]){
+          if(this.influence[r+1][currentS]){
+            this.influence[r+1][currentS][currentI] += mod[c];
+          }
         }
 
       }

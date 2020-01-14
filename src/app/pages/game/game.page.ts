@@ -9,6 +9,8 @@ import { AI } from '../../cls/AI/AI.cls';
 import { Playcall } from 'src/app/cls/Playcalls/Playcall.cls';
 import { Siri } from '../../cls/Siri/Siri.cls';
 import { OCDCEngine } from '../../cls/OCDCEngine/OCDCEngine.cls';
+import { RunEngine } from 'src/app/cls/OCDCEngine/RunEngine.cls';
+import { ConsoleAppender } from 'excalibur';
 
 @Component({
   selector: 'app-game',
@@ -70,7 +72,8 @@ export class GamePage implements OnInit {
       let play = new Play(this.game.getCurrentGameState());
       play.setPlaycall(this.playcall_off, this.playcall_def);
       this.game.addPlay(play);
-      this.lineGrid.update(play);
+      this.playGrid.update(play);
+      // this.lineGrid.update(play);
     }
 
   }
@@ -158,11 +161,17 @@ export class GamePage implements OnInit {
   }
 
   snap(){
-    this.presnap = false;
+    let engine = new RunEngine(this.game.getCurrentPlay());
+    engine.step();
+    console.log('infMap', engine.offInf, engine.defInf);
+    this.playGrid.setInfluenceMap(engine.offInf, engine.defInf, engine.influence);
+
+    //this.presnap = false;
     //OCDCEngine.resolve(this.game);
     //this.game.resolveCurrentPlay();  
     //console.log(this.game.getLastPlay());  
     //console.log(this.playcall_off);
+    /*
     this.lineGrid.setRunLocation(this.playcall_off.runCall.hole);
     let probs = this.lineGrid.getProbs();
     for(var i=0;i<10000;i++){
@@ -178,8 +187,9 @@ export class GamePage implements OnInit {
       }
       this.devTools.update(ballY);
     }
+    */
     //console.log('probs', this.lineGrid.getProbs());
-    this.showPlaycallPromptToast();
+    //this.showPlaycallPromptToast();
   }
 
 

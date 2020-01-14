@@ -8,6 +8,7 @@ export class Player {
   y:number = 0;
   alignment;
   assignment;
+  od;
 
   constructor(pos){
     this.pos = pos.pos;

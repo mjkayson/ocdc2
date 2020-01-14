@@ -114,10 +114,14 @@ export class OffensivePlaycall extends Playcall {
     this.personnel = opt;
     this.players = [];
     this.personnel.positions.forEach(pos => {
-      this.players.push(PlayerFactory.getPlayer(pos));
+      let player = PlayerFactory.getPlayer(pos);
+      player.od = "O";
+      this.players.push(player);
     });
     // defaults
     this.setOLAlignments(this.lineRunAlignment);
+    this.setRBAlignments(this.getRBAlignmentOptions()[0]);
+    this.setWRAlignments(this.getWRAlignmentOptions()[0]);
     this.setStrongSide(this.strongSides[1]);
     this.setQBAlignment(this.QBAlignments[0]);
   }
@@ -307,12 +311,12 @@ export class OffensivePlaycall extends Playcall {
       }
     }
     if(this.RBAlignment){
-      if(!this.RBAlignment.doNoShowInPlaycall){
+      if(!this.RBAlignment.doNotShowInPlaycall){
         str += this.RBAlignment.name + ' ';
       }
     }
     if(this.WRAlignment){
-      if(!this.WRAlignment.doNoShowInPlaycall){
+      if(!this.WRAlignment.doNotShowInPlaycall){
         str += this.WRAlignment.name + ' ';
       }
     }

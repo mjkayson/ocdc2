@@ -12,30 +12,17 @@ export class AI {
 
   static getSpecificOffensivePlaycall(){
     let call = new OffensivePlaycall();
-    call.personnel = call.personnelOptions[0].opts[4]; // 11
-
-    let formation = call.formationOptions[0].opts[1]; // Single
-    //formation.setQbDepth(call.qbDepthOptions[0].opts[0]); // -
-    //formation.setStrongSide(call.strongSideOptions[0].opts[0]); // Right
-    call.formation = formation;
-
-    //let playType = call.playTypeOptions[0].opts[0]; // Run
-    //call.playType = playType;
-
-    //call.runCall = call.runCallOptions[0].opts[8]; // 28
-    //call.blockingSchemes.push(call.runBlockingSchemeOptions[0].opts[2]); // Lead
-
+    call.setPersonnel(call.personnelOptions[4]); // 11
+    call.setPlayType(call.getPlayTypeOptions()[0]); // Run
+    call.setRunCall(call.getRunCallOptions()[0]); // 20
+    call.setBlockingScheme(call.getRunBlockingOptions()[0]); // Dive
     return call;
   }
 
   static getSpecificDefensivePlaycall(){
     let call = new DefensivePlaycall();
-    call.personnel = call.personnelOptions[0]; // 43
-    call.lineAlignment = call.lineAlignments[2];
-    call.boxAlignment = call.boxAlignments[1];
-    call.lineCall = call.lineCalls[3];
-    call.coverage = call.coverages[2];
-    call.depth = call.depths[0];
+    call.setPersonnel(call.personnelOptions[1]); // 43
+    call.setCoverage(call.getCoverageOptions()[2]);// Cover 2
     return call;
   }
 
