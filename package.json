@@ -29,7 +29,7 @@
     "cordova-sqlite-storage": "^4.0.0",
     "core-js": "^2.5.4",
     "excalibur": "^0.23.0",
-    "highcharts": "^8.0.0",
+    "highcharts": "^8.1.1",
     "rxjs": "^6.5.4",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
